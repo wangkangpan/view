@@ -1,0 +1,61 @@
+#启动配置参数
+server:
+  #端口号
+  port: 8081
+  #项目名，如果不设定，默认是 /
+  context-path: /
+
+# MVC 视图配置、静态资源位置
+spring:
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
+    static-path-pattern: /**
+    resources:
+      static-locations: classpath:/static/
+
+#mysql 数据库
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/script_20220124_bishe?useUnicode=true&characterEncoding=utf-8&useSSL=true
+      username: root
+      password: 123
+
+  mail:
+    host: smtp.qq.com
+    username: 1456225949@qq.com
+    password: emrzvczjvzbybagh
+    #https SSL
+    properties:
+      mail:
+        stmp:
+          auth: true
+          ssl:
+            enable: true
+    port: 25
+
+    register:
+      subject: '注册验证码'
+      content: '注册码的有效期是5分钟,您的注册验证码是'
+      timeout: 300
+
+#mybatis配置
+mybatis:
+  mapper-locations: classpath:/mapping/**/*.xml
+  configuration:
+    lazy-load-trigger-methods: clone
+    aggressive-lazy-loading: false
+    lazy-loading-enabled: true
+
+#正则
+regex:
+  email: '^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$'
+
+
+redis:
+  ip: '127.0.1'
+  port: 6379
+
+

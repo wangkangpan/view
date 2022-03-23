@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.user.mapper.UserMapper">
+
+    <select id="selectUserByUserName" parameterType="String" resultType="com.user.pojo.User">
+        select * from user where userName = #{userName}
+        limit 1
+    </select>
+
+     <insert id="insertUser" parameterType="com.user.pojo.User">
+        insert into user values(
+            #{user.id}
+            #{user.userName}
+            #{user.password}
+            #{user.email}
+            #{user.telephone}
+            #{certificate}
+        )
+    </insert>
+
+    <insert id="insertUserIDAndCertificate" parameterType="com.user.pojo.User">
+        insert into user(id, userName, password, email, telephone) values(
+            #{id},
+            #{userName},
+            #{password},
+            #{email},
+            #{telephone}
+        )
+    </insert> 
+
+
+
+
+</mapper>
