@@ -1,7 +1,7 @@
 *{
     outline: none !important;
 }
-body{
+.inner-left{
     color:#ffffff
 }
 .menu{
@@ -99,4 +99,61 @@ li > a{
 }
 .micro-box{
     margin-bottom: 28px;
+    position: relative;
+}
+
+.micro-box-icon{
+
+    margin-bottom: 10px;
+}
+
+.micro-box-icon button{
+
+    color: #ffffff;
+    margin-right: 20px;
+}
+.micro-box-icon span{
+    text-shadow: 0 0 2px black;
+    font-size: 30px;
+    width: 80px;
+    height: 80px;
+}
+.micro-box-icon span a{
+    text-decoration: none;
+    cursor: pointer;
+}
+.micro-box-content{
+    font-family: "Lucida Console", "Courier New", monospace;
+    /*em相对计量单位，2em表示缩进两个文本*/
+    text-indent: 2em;
+}
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+}
+.btn-circle.btn-lg {
+    width: 50px;
+    height: 50px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 25px;
+}
+.btn-circle.btn-xl {
+    width: 80px;
+    height: 80px;
+    padding: 10px 16px;
+    font-size: 24px;
+    line-height: 1.33;
+    border-radius: 40px;
+
+}
+.btn-circle.btn-xl:hover{
+    opacity: 0.6;
+    color: #5cb85c;
 }

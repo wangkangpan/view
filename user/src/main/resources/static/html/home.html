@@ -9,6 +9,8 @@
     <link rel = "stylesheet"  href="../bootstrap/css/bootstrap.min.css">
     <link rel = "stylesheet" href = "../bootstrap/css/bootstrap-theme.min.css">
     <link rel = "stylesheet" href = "../icon/bug/iconfont.css" >
+    <link rel = "stylesheet" href = "../icon/middle/iconfont.css" >
+    <link rel = "stylesheet" href = "../icon/single/iconfont.css">
     <link rel = "stylesheet" href = "../css/home.css">
 </head>
 <body>
@@ -43,22 +45,22 @@
                     <form class = "form-inline">
                         <div class = "input-group col-lg-12" style="margin-right: 10px;">
                             <div class="input-group-btn">
-                                <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    key
+                                <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100%;min-width: 60px;">
+                                    <span id = "current">key</span>
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a href = "#">id</a></li>
-                                    <li><a href = "#">tag</a></li>
-                                    <li><a href = "#">class</a></li>
-                                    <li><a href = "#">content</a></li>
+                                    <li><a href = "javascript:$('#current').html('id')">id</a></li>
+                                    <li><a href = "javascript:$('#current').html('tag')">tag</a></li>
+                                    <li><a href = "javascript:$('#current').html('class')">class</a></li>
+                                    <li><a href = "javascript:$('#current').html('content')">content</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="#">attr</a></li>
+                                    <li><a href="javascript:void(0);" onclick="addTag();">attr</a></li>
                                 </ul>
                             </div>
-                            <input class = "form-control input-lg" id = "search" placeholder="请键入url">
+                            <input class = "form-control input-lg" id = "info" placeholder="请键入url">
                             <div class = "input-group-btn">
-                                <button class = "btn btn-primary btn-lg">快速开始</button>
+                                <button id = 'doSearch' class = "btn btn-primary btn-lg">快速开始</button>
                             </div>
                         </div>
 
@@ -71,22 +73,41 @@
     </div>
 
 </div>
-<div class = "container"  style="word-break: break-word;color: #0f0f0f">
+<div class = "container"  style="padding-top:50px;word-break: break-word;color: #0f0f0f">
     <div class = "row">
         <div class = "col-sm-12 col-md-4">
             <div class = "micro-box">
-                <div class = "micro-box-icon"></div>
-                <div class = "micro-box-content">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+                <div class = "micro-box-icon">
+
+                    <button type="button" class="btn btn-danger btn-circle btn-xl">
+                        <span class="iconfont icon-download" style = "font-size: 60px;position: absolute;top:0;bottom: 0;left: 0;right: 0;"></span>
+                    </button>
+
+                    <span><a>下载源码</a></span>
+                </div>
+                <div class = "micro-box-content">将代码下载，您可以选择更新代码针对性的为您的团队服务，然后再部署至您团队的私人服务器。</div>
             </div>
 
             <div class = "micro-box">
-                <div class = "micro-box-icon"></div>
-                <div class = "micro-box-content">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+                <div class = "micro-box-icon">
+                    <button type="button" class="btn btn-danger btn-circle btn-xl">
+                        <span class="iconfont icon-more" style = "font-size: 60px;position: absolute;top:0;bottom: 0;left: 0;right: 0;"></span>
+                    </button>
+                    <span><a>多源数据</a></span>
+                </div>
+                <div class = "micro-box-content">多个页面查询元素，页面数量不得超过5个，单个页面结果不得超过100个，单次在线查询限时60分钟，将忽视超出结果。</div>
             </div>
 
+
             <div class = "micro-box">
-                <div class = "micro-box-icon"></div>
-                <div class = "micro-box-content">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+                <div class = "micro-box-icon">
+                    <button type="button" class="btn btn-danger btn-circle btn-xl">
+                        <span class="iconfont icon-single" style = "font-size: 60px;position: absolute;top:0;bottom: 0;left: 0;right: 0;"></span>
+                    </button>
+                    <span><a>单源数据</a></span>
+                </div>
+
+                <div class = "micro-box-content">单个页面查询元素，页面结果不得超过100个，单次在线查询限时60分钟，将忽视超出结果。</div>
             </div>
 
         </div>
@@ -113,7 +134,26 @@
         <div class = "col-sm-12 col-md-4"></div>
     </div>
 </div>
+
+<input type = "hidden" id = "option" value = "1">
+<div class="modal fade" id = "Attr" tabindex="-1" role="dialog" aria-labelledby = "model_title">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="model_title">引入元素属性</h4>
+            </div>
+            <div class="modal-body" >
+                <input type = "text" class = "form-control" placeholder="请填入页面自定义属性" >
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 <script src = "../jquery/jquery-3.6.0.js" ></script>
 <script src = "../bootstrap/js/bootstrap.min.js"></script>
+<script src = "../js/home.js"></script>
 </html>
