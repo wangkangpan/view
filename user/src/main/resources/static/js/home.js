@@ -10,16 +10,22 @@ function addTag(){
 
 
 $('#doSearch').click(function () {
-    let url = $().val();
+    let url = $('#info').val();
     let option = $('#option').val();
     let attr = $('#current').html();
     switch (option) {
         case '0': return false;
         case '1': $.post(
             domain + "/script/run",
-            {attr}
-
-        );
-        case '2': $.post();
+            {
+                attr: attr,
+                url: url
+            }
+        ).done(function () {
+            alert('success');
+        }).fail(function () {
+            alert('fail');
+        });
+        //case '2': $.post();
     }
 });

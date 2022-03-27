@@ -17,7 +17,7 @@ import java.io.IOException;
 public class ScriptController {
 
     @RequestMapping("/run")
-    public String run() throws IOException {
+    public String run(String attr,String url) throws IOException {
         //自定义脚本解释器
         Interpreter interpreter = new Interpreter();
         //获取静态资源路径
