@@ -3,15 +3,26 @@
 <head>
     <meta http-equiv="content-type" content="text/html;
     charset=UTF-8">
+
     <meta name="viewport" content="width=device-width,
     initial-scale=1,maximum-scale=1,user-scalable=no">
     <title>home</title>
+
     <link rel = "stylesheet"  href="../bootstrap/css/bootstrap.min.css">
     <link rel = "stylesheet" href = "../bootstrap/css/bootstrap-theme.min.css">
+    <link rel = "stylesheet" href = "../toastr/toastr.min.css">
     <link rel = "stylesheet" href = "../icon/bug/iconfont.css" >
     <link rel = "stylesheet" href = "../icon/middle/iconfont.css" >
     <link rel = "stylesheet" href = "../icon/single/iconfont.css">
     <link rel = "stylesheet" href = "../css/home.css">
+    <style>
+        .alert{
+            position: fixed;
+            width: 50%;
+            margin-left: 20%;
+            z-index: 2000;
+        }
+    </style>
 </head>
 <body>
 <div class = "wrapper">
@@ -46,18 +57,27 @@
                         <div class = "input-group col-lg-12" style="margin-right: 10px;">
                             <div class="input-group-btn">
                                 <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100%;min-width: 60px;">
-                                    <span id = "current">key</span>
+                                    <span id = "key" >key</span>
                                     <span class="caret"></span>
                                 </button>
-                                <ul class="dropdown-menu">
+                                <ul id = "z-menu" class="dropdown-menu">
                                     <li><a href = "javascript:$('#current').html('id')">id</a></li>
-                                    <li><a href = "javascript:$('#current').html('tag')">tag</a></li>
-                                    <li><a href = "javascript:$('#current').html('class')">class</a></li>
                                     <li><a href = "javascript:$('#current').html('content')">content</a></li>
+                                    <li><a href = "javascript:$('#current').html('class')">class</a></li>
+                                    <li>
+                                        <a href = "javascript:" onclick="addAttr();">
+                                            <span class="iconfont icon-jiahao"></span>&nbsp;Tag
+                                        </a>
+                                    </li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="javascript:void(0);" onclick="addTag();">attr</a></li>
+                                    <li>
+                                        <a href="javascript:void(0);" onclick="addTag();">
+                                            <span class="iconfont icon-jiahao"></span>&nbsp;Attr
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
+
                             <input class = "form-control input-lg" id = "info" placeholder="请键入url">
                             <div class = "input-group-btn">
                                 <button type = "button" id = 'doSearch' class = "btn btn-primary btn-lg">快速开始</button>
@@ -75,7 +95,7 @@
 </div>
 <div class = "container"  style="padding-top:50px;word-break: break-word;color: #0f0f0f">
     <div class = "row">
-        <div class = "col-sm-12 col-md-4">
+        <div class = "col-sm-12 col-md-6 col-lg-4" style = "margin-top: 20px;">
             <div class = "micro-box">
                 <div class = "micro-box-icon">
 
@@ -111,10 +131,312 @@
             </div>
 
         </div>
-        
-        <div class = "col-sm-12 col-md-4"></div>
+        <div class = "col-sm-12 col-md-6 col-lg-4">
+            <svg width="356px" height="462px" viewBox="0 0 416 562" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
+                <title>手机</title>
+                <desc>Created with Sketch.</desc>
+                <defs>
+                    <path d="M0.559,0.043 L2.66955395,1.34268441 C71.7487608,44.6026331 152.950171,165.878434 138.894206,271.218841 L138.439,274.406 L136.903304,275.487546 C132.308067,278.570276 127.819955,280.201951 123.451314,280.547204 L121.999542,280.617102 C79.062579,281.222179 47.94275,157.8189 40.578,69.611 C36.557,21.456 -2.343,1.526 0.559,0.043 Z" id="path-1"></path>
+                    <linearGradient x1="0.277076164%" y1="0.0150347203%" x2="0.277076164%" y2="358.056993%" id="linearGradient-3">
+                        <stop stop-color="#FFFFFF" offset="0%"></stop>
+                        <stop stop-color="#2FA8B3" offset="100%"></stop>
+                    </linearGradient>
+                    <path d="M0.559,0.043 L2.66955395,1.34268441 C72.4465306,45.0396023 154.59184,168.33641 138.439,274.406 L138.439,274.406 L136.903304,275.487546 C132.308067,278.570276 127.819955,280.201951 123.451314,280.547204 L121.999542,280.617102 C79.062579,281.222179 47.94275,157.8189 40.578,69.611 C36.557,21.456 -2.343,1.526 0.559,0.043" id="path-4"></path>
+                    <linearGradient x1="34.9013421%" y1="46.9997047%" x2="64.5982619%" y2="53.6849262%" id="linearGradient-6">
+                        <stop stop-color="#FFFFFF" offset="0%"></stop>
+                        <stop stop-color="#2FA8B3" offset="100%"></stop>
+                    </linearGradient>
+                    <path d="M0.606,0.784 L0.684888889,0.791888889 C0.719703704,0.799 0.753925926,0.811049383 0.786502058,0.828563786 L0.834,0.859 L3.17150611,2.62901458 C79.1228175,60.7529121 114.465,148.044164 128.693283,266.650288 L129.118781,270.254 L129.118781,270.330828 C129.105094,270.481578 129.002531,270.611516 128.858344,270.659891 L128.783,270.67741 L128.706219,270.67741 C128.555656,270.662996 128.426469,270.559848 128.379406,270.416059 L128.363,270.341 L127.94212,266.769302 C113.985171,150.390021 79.6970928,64.199179 6.51942789,6.19895568 L4.29,4.45 L3.75932422,3.95780469 C2.53167188,2.8255 1.379625,1.806125 0.334,0.897 C0.407,0.822 0.506,0.784 0.606,0.784 Z" id="path-7"></path>
+                    <linearGradient x1="0.256923154%" y1="0.288926015%" x2="0.256923154%" y2="378.148705%" id="linearGradient-9">
+                        <stop stop-color="#E0F1F6" offset="0%"></stop>
+                        <stop stop-color="#2796A0" offset="100%"></stop>
+                    </linearGradient>
+                    <path d="M0.606,0.784 L0.684888889,0.791888889 C0.737111111,0.802555556 0.788,0.824333333 0.834,0.859 L0.834,0.859 L3.17150611,2.62901458 C79.8900025,61.3400222 115.17484,149.8106 129.118781,270.254 L129.118781,270.254 L129.118781,270.330828 C129.102813,270.506703 128.965875,270.65425 128.783,270.67741 L128.783,270.67741 L128.706219,270.67741 C128.530563,270.660594 128.384,270.523 128.363,270.341 L128.363,270.341 L127.94212,266.769302 C113.844192,149.214473 79.00233,62.46103 4.29,4.45 L4.29,4.45 L3.75932422,3.95780469 C2.53167188,2.8255 1.379625,1.806125 0.334,0.897 C0.407,0.822 0.506,0.784 0.606,0.784" id="path-10"></path>
+                    <linearGradient x1="34.6884916%" y1="46.7796452%" x2="62.8380485%" y2="53.4103685%" id="linearGradient-12">
+                        <stop stop-color="#E0F1F6" offset="0%"></stop>
+                        <stop stop-color="#2796A0" offset="100%"></stop>
+                    </linearGradient>
+                    <path d="M84.673,0.113 L84.703375,0.113 L84.736,0.121 L85.2612834,1.94949618 C102.078292,62.2235571 85.1381984,174.765424 22.2177665,230.066833 L20.297,231.725 L18.8580019,231.594514 C-27.6262668,226.299675 24.80049,123.57779 71.28,61.385 C93.881,31.139 82.522,0.113 84.673,0.113 Z" id="path-13"></path>
+                    <linearGradient x1="5.94690072%" y1="0.0487097414%" x2="5.94690072%" y2="441.42802%" id="linearGradient-15">
+                        <stop stop-color="#FFFFFF" offset="0%"></stop>
+                        <stop stop-color="#2FA8B3" offset="100%"></stop>
+                    </linearGradient>
+                    <path d="M84.673,0.113 L84.703375,0.113 L84.703375,0.113 L84.736,0.121 L85.2612834,1.94949618 C102.248161,62.832386 84.79253,177.04433 20.297,231.725 L20.297,231.725 L18.8580019,231.594514 C-27.6262668,226.299675 24.80049,123.57779 71.28,61.385 C93.881,31.139 82.522,0.113 84.673,0.113" id="path-16"></path>
+                    <linearGradient x1="43.4820123%" y1="30.4657818%" x2="57.8926555%" y2="71.419014%" id="linearGradient-18">
+                        <stop stop-color="#FFFFFF" offset="0%"></stop>
+                        <stop stop-color="#2FA8B3" offset="100%"></stop>
+                    </linearGradient>
+                    <path d="M68.004,0.483 L68.0688194,0.490518519 C68.1525417,0.510259259 68.2235972,0.56762963 68.2597639,0.647814815 L68.28,0.712 L68.6894728,2.93289285 C81.6753481,75.4572688 56.314346,144.863992 2.5974538,222.211688 L0.961,224.558 L0.915618076,224.610458 C0.882241983,224.64121 0.843174927,224.663426 0.801728863,224.676522 L0.738189504,224.690418 C0.69519242,224.693085 0.651472303,224.687504 0.610341108,224.67193 L0.551,224.641 L0.501116618,224.597146 C0.428536443,224.515936 0.409381924,224.397554 0.45312828,224.293385 L0.487,224.233 L2.10889846,221.907538 C54.8179183,146.013342 80.2082023,77.7908592 68.7369078,6.7341131 L68.378,4.58 L68.3252915,3.94220117 C68.2354227,2.89341108 68.1360058,1.91597668 68.0354227,1.01463557 L67.975,0.483 L68.004,0.483 Z" id="path-19"></path>
+                    <linearGradient x1="0.5736084%" y1="0.214667422%" x2="0.5736084%" y2="455.325779%" id="linearGradient-21">
+                        <stop stop-color="#E0F1F6" offset="0%"></stop>
+                        <stop stop-color="#2796A0" offset="100%"></stop>
+                    </linearGradient>
+                    <path d="M68.004,0.483 L68.0688194,0.490518519 C68.1734722,0.515194444 68.2583333,0.598666667 68.28,0.712 L68.28,0.712 L68.6894728,2.93289285 C81.8065186,76.1898383 55.79809,146.26583 0.961,224.558 L0.961,224.558 L0.915618076,224.610458 C0.882241983,224.64121 0.843174927,224.663426 0.801728863,224.676522 L0.738189504,224.690418 C0.673693878,224.695 0.607571429,224.679571 0.551,224.641 L0.551,224.641 L0.501116618,224.597146 C0.414020408,224.499694 0.403857143,224.348714 0.487,224.233 L0.487,224.233 L2.10889846,221.907538 C55.3503326,145.246734 80.71835,76.41341 68.378,4.58 L68.378,4.58 L68.3252915,3.94220117 C68.217449,2.68365306 68.0958571,1.52785714 67.975,0.483 L67.975,0.483 L68.004,0.483 Z" id="path-22"></path>
+                    <linearGradient x1="43.3517562%" y1="28.332694%" x2="54.948534%" y2="68.6966572%" id="linearGradient-24">
+                        <stop stop-color="#E0F1F6" offset="0%"></stop>
+                        <stop stop-color="#2796A0" offset="100%"></stop>
+                    </linearGradient>
+                    <path d="M64.138,0 C160.34026,178.45542 115.728613,343.38154 59.0132205,482.270234 L57.291,486.471 L55.9398936,488.175303 C40.2663456,507.750855 27.7227227,516.570633 18.5551705,517.12469 L17.777654,517.152639 C1.6236746,517.302769 -3.56905,490.90311 3.635,452.475 C54.689,321.501 112.449,160.604 64.138,0 Z" id="path-25"></path>
+                    <linearGradient x1="4.16717527%" y1="0%" x2="4.16717527%" y2="195.793499%" id="linearGradient-27">
+                        <stop stop-color="#FFFFFF" offset="0%"></stop>
+                        <stop stop-color="#5FBBC5" offset="100%"></stop>
+                    </linearGradient>
+                    <path d="M64.138,0 C161.312,180.258 114.813,346.712 57.291,486.471 L57.291,486.471 L55.9398936,488.175303 C40.2663456,507.750855 27.7227227,516.570633 18.5551705,517.12469 L17.777654,517.152639 C1.6236746,517.302769 -3.56905,490.90311 3.635,452.475" id="path-28"></path>
+                    <linearGradient x1="-0.000281796549%" y1="49.9999383%" x2="100.000526%" y2="49.9999383%" id="linearGradient-30">
+                        <stop stop-color="#FFFFFF" offset="0%"></stop>
+                        <stop stop-color="#5FBBC5" offset="100%"></stop>
+                    </linearGradient>
+                    <path d="M232.986,0.48 L233.362443,0.48 C245.761119,0.6843766 255.765,10.81273 255.765,23.26 L255.765,23.26 L255.765,391.669 L255.761946,392.045413 C255.560623,404.443139 245.43228,414.448 232.986,414.448 L232.986,414.448 L23.449,414.448 L23.0725573,414.448 C10.6738807,414.243604 0.67,404.11429 0.67,391.669 L0.67,391.669 L0.67,23.26 L0.673054258,22.8835276 C0.8743765,10.4838807 11.00272,0.48 23.449,0.48 L23.449,0.48 L232.986,0.48 Z" id="path-31"></path>
+                    <radialGradient cx="123.937748%" cy="38.2167247%" fx="123.937748%" fy="38.2167247%" r="30.6345479%" gradientTransform="translate(1.239377,0.382167),scale(1.000000,0.616219),translate(-1.239377,-0.382167)" id="radialGradient-33">
+                        <stop stop-color="#327BBB" offset="0%"></stop>
+                        <stop stop-color="#D6EEFB" offset="100%"></stop>
+                    </radialGradient>
+                    <path d="M231.063,0.92 L231.432041,0.926166756 C243.586772,1.2269937 253.37708,11.13825 253.484,23.34 L253.484,23.34 L253.484,392.466 L253.477742,392.837102 C253.172868,405.059517 243.15581,414.886 230.861,414.886 L230.861,414.886 L22.777,414.886 L22.4031625,414.886 C10.0902936,414.683045 0.156,404.62514 0.156,392.264 L0.156,392.264 L0.156,23.541 L0.159000439,23.169194 C0.3567766,10.9230788 10.30693,1.02692 22.576,0.92 L22.576,0.92 L231.063,0.92 Z" id="path-34"></path>
+                    <radialGradient cx="-5.63696078e-05%" cy="50.0000032%" fx="-5.63696078e-05%" fy="50.0000032%" r="100%" gradientTransform="translate(-0.000001,0.500000),scale(1.000000,0.611954),translate(0.000001,-0.500000)" id="radialGradient-36">
+                        <stop stop-color="#89B6DE" offset="0%"></stop>
+                        <stop stop-color="#BAE2F3" offset="100%"></stop>
+                    </radialGradient>
+                    <path d="M5.404,0.084 C2.823,0.084 0.73,2.177 0.73,4.758 L0.73,223.305 C0.73,225.886 2.823,227.98 5.404,227.98 L184.216,227.98 C186.769,227.98 188.843,225.933 188.889,223.393 L188.889,4.671 C188.843,2.13 186.769,0.084 184.216,0.084 L5.404,0.084 Z" id="path-37"></path>
+                    <path d="M5.958,0.836 C3.054,0.836 0.7,3.191 0.7,6.096 L0.7,6.096 C0.7,8.999 3.054,11.354 5.958,11.354 L5.958,11.354 L28.164,11.354 C31.068,11.354 33.423,8.999 33.423,6.096 L33.423,6.096 C33.423,3.191 31.068,0.836 28.164,0.836 L28.164,0.836 L5.958,0.836 Z" id="path-39"></path>
+                    <path d="M4.206,0.494 C2.269,0.494 0.7,2.064 0.7,4 L0.7,4 C0.7,5.936 2.269,7.506 4.206,7.506 L4.206,7.506 L93.027,7.506 C94.964,7.506 96.533,5.936 96.533,4 L96.533,4 C96.533,2.064 94.964,0.494 93.027,0.494 L93.027,0.494 L4.206,0.494 Z" id="path-41"></path>
+                    <path d="M2.747,0.094 C1.455,0.094 0.41,1.14 0.41,2.432 L0.41,2.432 L0.41,77.257 L9.848,77.257 L9.848,2.432 C9.848,1.14 8.802,0.094 7.511,0.094 L7.511,0.094 L2.747,0.094 Z" id="path-43"></path>
+                    <path d="M2.419,0.802 C1.129,0.802 0.082,1.848 0.082,3.14 L0.082,3.14 L0.082,65.257 L9.521,65.257 L9.521,3.14 C9.521,1.848 8.475,0.802 7.184,0.802 L7.184,0.802 L2.419,0.802 Z" id="path-45"></path>
+                    <path d="M2.513,0.57 C1.223,0.57 0.176,1.615 0.176,2.907 L0.176,2.907 L0.176,92.257 L9.616,92.257 L9.616,2.907 C9.616,1.615 8.568,0.57 7.278,0.57 L7.278,0.57 L2.513,0.57 Z" id="path-47"></path>
+                    <path d="M2.663,0.491 C1.373,0.491 0.327,1.538 0.327,2.828 L0.327,2.828 L0.327,101.257 L9.765,101.257 L9.765,2.828 C9.765,1.538 8.718,0.491 7.428,0.491 L7.428,0.491 L2.663,0.491 Z" id="path-49"></path>
+                    <path d="M2.757,0.413 C1.466,0.413 0.421,1.46 0.421,2.75 L0.421,2.75 L0.421,110.257 L9.859,110.257 L9.859,2.75 C9.859,1.46 8.812,0.413 7.523,0.413 L7.523,0.413 L2.757,0.413 Z" id="path-51"></path>
+                    <path d="M2.908,0.257 C1.617,0.257 0.571,1.305 0.571,2.595 L0.571,2.595 L0.571,128.257 L10.009,128.257 L10.009,2.595 C10.009,1.305 8.963,0.257 7.672,0.257 L7.672,0.257 L2.908,0.257 Z" id="path-53"></path>
+                    <path d="M2.841,0.307 C1.55,0.307 0.503,1.353 0.503,2.644 L0.503,2.644 L0.503,99.257 L9.943,99.257 L9.943,2.644 C9.943,1.353 8.897,0.307 7.605,0.307 L7.605,0.307 L2.841,0.307 Z" id="path-55"></path>
+                    <path d="M2.991,0.045 C1.7,0.045 0.652,1.091 0.652,2.381 L0.652,2.381 L0.652,106.257 L10.093,106.257 L10.093,2.381 C10.093,1.091 9.047,0.045 7.755,0.045 L7.755,0.045 L2.991,0.045 Z" id="path-57"></path>
+                    <path d="M3.086,0.059 C1.794,0.059 0.747,1.105 0.747,2.396 L0.747,2.396 L0.747,116.257 L10.187,116.257 L10.187,2.396 C10.187,1.105 9.14,0.059 7.848,0.059 L7.848,0.059 L3.086,0.059 Z" id="path-59"></path>
+                    <path d="M3.235,0.271 C1.945,0.271 0.897,1.318 0.897,2.609 L0.897,2.609 L0.897,138.257 L10.336,138.257 L10.336,2.609 C10.336,1.318 9.291,0.271 7.999,0.271 L7.999,0.271 L3.235,0.271 Z" id="path-61"></path>
+                    <path d="M0.957,28.881 C0.957,44.684 14.184,57.619 30.342,57.619 L30.342,57.619 C38.829,57.619 46.501,54.107 51.729,48.521 L51.729,48.521 L37.831,35.757 C35.956,37.711 33.299,38.939 30.342,38.939 L30.342,38.939 C24.661,38.939 20.057,34.436 20.057,28.881 L20.057,28.881 C20.057,23.325 24.661,18.823 30.342,18.823 L30.342,18.823 L30.342,0.141 C14.184,0.141 0.957,13.077 0.957,28.881 L0.957,28.881 Z" id="path-63"></path>
+                    <path d="M0.655,18.823 C6.209,18.823 10.712,23.325 10.712,28.881 L10.712,28.881 L29.391,28.881 C29.391,13.077 16.458,0.141 0.655,0.141 L0.655,0.141 L0.655,18.823 Z" id="path-65"></path>
+                    <path d="M4.327,0.881 C4.327,4.009 2.79,6.789 0.403,8.583 L0.403,8.583 L12.149,22.913 C18.986,17.783 23.391,9.831 23.391,0.881 L23.391,0.881 L4.327,0.881 Z" id="path-67"></path>
+                </defs>
+                <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="手机">
+                        <g id="编组" transform="translate(0.000000, 192.000000)">
+                            <g>
+                                <mask id="mask-2" fill="white">
+                                    <use xlink:href="#path-1"></use>
+                                </mask>
+                                <g id="Clip-2"></g>
+                                <polygon id="Fill-1" fill="url(#linearGradient-3)" mask="url(#mask-2)" points="0 286 146 286 146 0 0 0"></polygon>
+                            </g>
+                            <g>
+                                <mask id="mask-5" fill="white">
+                                    <use xlink:href="#path-4"></use>
+                                </mask>
+                                <g id="Clip-4"></g>
+                                <path d="M40.578,69.611 C48.853,168.721 87.118,312.264 138.439,274.406 L138.439,274.406 C154.755,167.265 70.777,42.547 0.559,0.043 L0.559,0.043 C-2.343,1.526 36.557,21.456 40.578,69.611" id="Fill-3" fill="url(#linearGradient-6)" mask="url(#mask-5)"></path>
+                            </g>
+                        </g>
+                        <g id="编组" transform="translate(6.000000, 197.000000)">
+                            <g>
+                                <mask id="mask-8" fill="white">
+                                    <use xlink:href="#path-7"></use>
+                                </mask>
+                                <g id="Clip-6"></g>
+                                <polygon id="Fill-5" fill="url(#linearGradient-9)" mask="url(#mask-8)" points="0 271 130 271 130 0 0 0"></polygon>
+                            </g>
+                            <g>
+                                <mask id="mask-11" fill="white">
+                                    <use xlink:href="#path-10"></use>
+                                </mask>
+                                <g id="Clip-8"></g>
+                                <path d="M0.334,0.897 C1.529,1.936 2.863,3.119 4.29,4.45 L4.29,4.45 C79.757,63.047 114.544,150.97 128.363,270.341 L128.363,270.341 C128.387,270.549 128.575,270.699 128.783,270.679141 L128.783,270.679141 C128.992,270.651 129.141,270.462 129.118,270.254 L129.118,270.254 C115.034,148.594 79.175,59.556 0.834,0.859 L0.834,0.859 C0.765,0.807 0.685,0.784 0.606,0.784 L0.606,0.784 C0.506,0.784 0.407,0.822 0.334,0.897" id="Fill-7" fill="url(#linearGradient-12)" mask="url(#mask-11)"></path>
+                            </g>
+                        </g>
+                        <g id="编组" transform="translate(324.000000, 258.000000)">
+                            <g>
+                                <mask id="mask-14" fill="white">
+                                    <use xlink:href="#path-13"></use>
+                                </mask>
+                                <g id="Clip-10"></g>
+                                <polygon id="Fill-9" fill="url(#linearGradient-15)" mask="url(#mask-14)" points="-5 232 92 232 92 0 -5 0"></polygon>
+                            </g>
+                            <g>
+                                <mask id="mask-17" fill="white">
+                                    <use xlink:href="#path-16"></use>
+                                </mask>
+                                <g id="Clip-12"></g>
+                                <path d="M71.28,61.385 C24.331,124.206 -28.686,228.379 20.297,231.725 L20.297,231.725 C85.444,176.492 102.596,60.519 84.736,0.121 L84.736,0.121 C84.713,0.113 84.693,0.113 84.673,0.113 L84.673,0.113 C82.522,0.113 93.881,31.139 71.28,61.385" id="Fill-11" fill="url(#linearGradient-18)" mask="url(#mask-17)"></path>
+                            </g>
+                        </g>
+                        <g id="编组" transform="translate(341.000000, 264.000000)">
+                            <g>
+                                <mask id="mask-20" fill="white">
+                                    <use xlink:href="#path-19"></use>
+                                </mask>
+                                <g id="Clip-14"></g>
+                                <polygon id="Fill-13" fill="url(#linearGradient-21)" mask="url(#mask-20)" points="0 225 75 225 75 0 0 0"></polygon>
+                            </g>
+                            <g>
+                                <mask id="mask-23" fill="white">
+                                    <use xlink:href="#path-22"></use>
+                                </mask>
+                                <g id="Clip-16"></g>
+                                <path d="M67.975,0.483 C68.116,1.702 68.258,3.072 68.378,4.58 L68.378,4.58 C80.843,77.139 54.834,146.637 0.487,224.233 L0.487,224.233 C0.39,224.368 0.42,224.551 0.551,224.641 L0.551,224.641 C0.683,224.731 0.867,224.695 0.961,224.558 L0.961,224.558 C56.352,145.475 82.329,74.775 68.28,0.712 L68.28,0.712 C68.254,0.576 68.137,0.483 68.004,0.483 L68.004,0.483 L67.975,0.483 Z" id="Fill-15" fill="url(#linearGradient-24)" mask="url(#mask-23)"></path>
+                            </g>
+                        </g>
+                        <g id="编组" transform="translate(206.000000, 0.000000)">
+                            <g>
+                                <mask id="mask-26" fill="white">
+                                    <use xlink:href="#path-25"></use>
+                                </mask>
+                                <g id="Clip-18"></g>
+                                <polygon id="Fill-17" fill="url(#linearGradient-27)" mask="url(#mask-26)" points="-5 523 126 523 126 0 -5 0"></polygon>
+                            </g>
+                            <g>
+                                <mask id="mask-29" fill="white">
+                                    <use xlink:href="#path-28"></use>
+                                </mask>
+                                <g id="Clip-20"></g>
+                                <path d="M3.635,452.475 C-7.8,513.472 11.999,544.163 57.291,486.471 L57.291,486.471 C114.813,346.712 161.312,180.258 64.138,0 L64.138,0 C112.449,160.604 54.689,321.501 3.635,452.475" id="Fill-19" fill="url(#linearGradient-30)" mask="url(#mask-29)"></path>
+                            </g>
+                        </g>
+                        <g id="编组" transform="translate(109.000000, 144.000000)">
+                            <mask id="mask-32" fill="white">
+                                <use xlink:href="#path-31"></use>
+                            </mask>
+                            <g id="Clip-22"></g>
+                            <path d="M23.449,0.48 C10.877,0.48 0.67,10.687 0.67,23.26 L0.67,23.26 L0.67,391.669 C0.67,404.24 10.877,414.448 23.449,414.448 L23.449,414.448 L232.986,414.448 C245.558,414.448 255.765,404.24 255.765,391.669 L255.765,391.669 L255.765,23.26 C255.765,10.687 245.558,0.48 232.986,0.48 L232.986,0.48 L23.449,0.48 Z" id="Fill-21" fill="url(#radialGradient-33)" mask="url(#mask-32)"></path>
+                        </g>
+                        <g id="编组" transform="translate(109.000000, 147.000000)">
+                            <mask id="mask-35" fill="white">
+                                <use xlink:href="#path-34"></use>
+                            </mask>
+                            <g id="Clip-24"></g>
+                            <path d="M22.576,0.92 C10.183,1.028 0.156,11.124 0.156,23.541 L0.156,23.541 L0.156,392.264 C0.156,404.75 10.292,414.886 22.777,414.886 L22.777,414.886 L230.861,414.886 C243.28,414.886 253.375,404.86 253.484,392.466 L253.484,392.466 L253.484,23.34 C253.376,11.015 243.388,1.027 231.063,0.92 L231.063,0.92 L22.576,0.92 Z" id="Fill-23" fill="url(#radialGradient-36)" mask="url(#mask-35)"></path>
+                        </g>
+                        <polygon id="Fill-25" fill="#FFFFFF" points="122.808 502.573 350.33 502.573 350.33 167.388 122.808 167.388"></polygon>
+                        <g id="编组" transform="translate(142.000000, 189.000000)">
+                            <mask id="mask-38" fill="white">
+                                <use xlink:href="#path-37"></use>
+                            </mask>
+                            <g id="Clip-28"></g>
+                            <polygon id="Fill-27" fill="#FFFFFF" mask="url(#mask-38)" points="-10.113 238.823 199.735 238.823 199.735 -10.761 -10.113 -10.761"></polygon>
+                        </g>
+                        <g id="编组" transform="translate(157.000000, 213.000000)">
+                            <mask id="mask-40" fill="white">
+                                <use xlink:href="#path-39"></use>
+                            </mask>
+                            <g id="Clip-30"></g>
+                            <polygon id="Fill-29" fill="#D7D7D8" mask="url(#mask-40)" points="-10.143 22.197 44.268 22.197 44.268 -10.009 -10.143 -10.009"></polygon>
+                        </g>
+                        <g id="编组" transform="translate(157.000000, 233.000000)">
+                            <mask id="mask-42" fill="white">
+                                <use xlink:href="#path-41"></use>
+                            </mask>
+                            <g id="Clip-32"></g>
+                            <polygon id="Fill-31" fill="#EEEEEE" mask="url(#mask-42)" points="-10.143 18.35 107.378 18.35 107.378 -10.349 -10.143 -10.349"></polygon>
+                        </g>
+                        <polygon id="Fill-33" fill="#EEEEEE" points="156.755 313.739 322.89 313.739 322.89 312.832 156.755 312.832"></polygon>
+                        <polygon id="Fill-34" fill="#EEEEEE" points="156.755 354.59 322.89 354.59 322.89 353.683 156.755 353.683"></polygon>
+                        <polygon id="Fill-35" fill="#EEEEEE" points="156.755 397.257 322.89 397.257 322.89 396.349 156.755 396.349"></polygon>
+                        <g id="编组" transform="translate(179.000000, 320.000000)">
+                            <mask id="mask-44" fill="white">
+                                <use xlink:href="#path-43"></use>
+                            </mask>
+                            <g id="Clip-37"></g>
+                            <polygon id="Fill-36" fill="#C8E2F6" mask="url(#mask-44)" points="-10.434 88.1 20.692 88.1 20.692 -10.749 -10.434 -10.749"></polygon>
+                        </g>
+                        <g id="编组" transform="translate(168.000000, 332.000000)">
+                            <mask id="mask-46" fill="white">
+                                <use xlink:href="#path-45"></use>
+                            </mask>
+                            <g id="Clip-39"></g>
+                            <polygon id="Fill-38" fill="#A1D7E3" mask="url(#mask-46)" points="-10.761 76.1 20.365 76.1 20.365 -10.041 -10.761 -10.041"></polygon>
+                        </g>
+                        <g id="编组" transform="translate(200.000000, 305.000000)">
+                            <mask id="mask-48" fill="white">
+                                <use xlink:href="#path-47"></use>
+                            </mask>
+                            <g id="Clip-41"></g>
+                            <polygon id="Fill-40" fill="#A1D7E3" mask="url(#mask-48)" points="-10.667 103.1 20.459 103.1 20.459 -10.275 -10.667 -10.275"></polygon>
+                        </g>
+                        <g id="编组" transform="translate(231.000000, 296.000000)">
+                            <mask id="mask-50" fill="white">
+                                <use xlink:href="#path-49"></use>
+                            </mask>
+                            <g id="Clip-43"></g>
+                            <polygon id="Fill-42" fill="#A1D7E3" mask="url(#mask-50)" points="-10.518 112.1 20.609 112.1 20.609 -10.352 -10.518 -10.352"></polygon>
+                        </g>
+                        <g id="编组" transform="translate(263.000000, 287.000000)">
+                            <mask id="mask-52" fill="white">
+                                <use xlink:href="#path-51"></use>
+                            </mask>
+                            <g id="Clip-45"></g>
+                            <polygon id="Fill-44" fill="#A1D7E3" mask="url(#mask-52)" points="-10.423 121.1 20.703 121.1 20.703 -10.43 -10.423 -10.43"></polygon>
+                        </g>
+                        <g id="编组" transform="translate(294.000000, 269.000000)">
+                            <mask id="mask-54" fill="white">
+                                <use xlink:href="#path-53"></use>
+                            </mask>
+                            <g id="Clip-47"></g>
+                            <polygon id="Fill-46" fill="#A1D7E3" mask="url(#mask-54)" points="-10.273 139.1 20.853 139.1 20.853 -10.586 -10.273 -10.586"></polygon>
+                        </g>
+                        <g id="编组" transform="translate(211.000000, 298.000000)">
+                            <mask id="mask-56" fill="white">
+                                <use xlink:href="#path-55"></use>
+                            </mask>
+                            <g id="Clip-49"></g>
+                            <polygon id="Fill-48" fill="#C8E2F6" mask="url(#mask-56)" points="-10.34 110.1 20.786 110.1 20.786 -10.536 -10.34 -10.536"></polygon>
+                        </g>
+                        <g id="编组" transform="translate(242.000000, 291.000000)">
+                            <mask id="mask-58" fill="white">
+                                <use xlink:href="#path-57"></use>
+                            </mask>
+                            <g id="Clip-51"></g>
+                            <polygon id="Fill-50" fill="#C8E2F6" mask="url(#mask-58)" points="-10.19 117.099 20.935 117.099 20.935 -10.799 -10.19 -10.799"></polygon>
+                        </g>
+                        <g id="编组" transform="translate(274.000000, 281.000000)">
+                            <mask id="mask-60" fill="white">
+                                <use xlink:href="#path-59"></use>
+                            </mask>
+                            <g id="Clip-53"></g>
+                            <polygon id="Fill-52" fill="#C8E2F6" mask="url(#mask-60)" points="-10.096 127.1 21.031 127.1 21.031 -10.785 -10.096 -10.785"></polygon>
+                        </g>
+                        <g id="编组" transform="translate(305.000000, 259.000000)">
+                            <mask id="mask-62" fill="white">
+                                <use xlink:href="#path-61"></use>
+                            </mask>
+                            <g id="Clip-55"></g>
+                            <polygon id="Fill-54" fill="#C8E2F6" mask="url(#mask-62)" points="-9.946 149.099 21.18 149.099 21.18 -10.572 -9.946 -10.572"></polygon>
+                        </g>
+                        <polygon id="Fill-58" fill="#E6E6E5" points="170.913 406.335 184.128 406.335 184.128 402.703 170.913 402.703"></polygon>
+                        <polygon id="Fill-59" fill="#E6E6E5" points="203.006 406.335 216.223 406.335 216.223 402.703 203.006 402.703"></polygon>
+                        <polygon id="Fill-60" fill="#E6E6E5" points="234.157 406.335 247.374 406.335 247.374 402.703 234.157 402.703"></polygon>
+                        <polygon id="Fill-61" fill="#E6E6E5" points="266.252 406.335 279.467 406.335 279.467 402.703 266.252 402.703"></polygon>
+                        <polygon id="Fill-62" fill="#E6E6E5" points="297.402 406.335 310.618 406.335 310.618 402.703 297.402 402.703"></polygon>
+                        <g id="编组" transform="translate(281.000000, 195.000000)">
+                            <mask id="mask-64" fill="white">
+                                <use xlink:href="#path-63"></use>
+                            </mask>
+                            <g id="Clip-64"></g>
+                            <polygon id="Fill-63" fill="#D7E8F7" mask="url(#mask-64)" points="-9.886 68.462 62.573 68.462 62.573 -10.702 -9.886 -10.702"></polygon>
+                        </g>
+                        <g id="编组" transform="translate(311.000000, 195.000000)">
+                            <mask id="mask-66" fill="white">
+                                <use xlink:href="#path-65"></use>
+                            </mask>
+                            <g id="Clip-66"></g>
+                            <polygon id="Fill-65" fill="#93C0E7" mask="url(#mask-66)" points="-10.19 39.724 40.237 39.724 40.237 -10.701 -10.19 -10.701"></polygon>
+                        </g>
+                        <g id="编组" transform="translate(317.000000, 223.000000)">
+                            <mask id="mask-68" fill="white">
+                                <use xlink:href="#path-67"></use>
+                            </mask>
+                            <g id="Clip-68"></g>
+                            <polygon id="Fill-67" fill="#BEDAF2" mask="url(#mask-68)" points="-10.442 33.756 34.237 33.756 34.237 -9.964 -10.442 -9.964"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+        </div>
 
-        <div class = "col-sm-12 col-md-4">
+        <div class = "col-sm-12 col-md-6 col-lg-4"  style = "margin-top: 20px;">
             <div class = "micro-box">
                 <div class = "micro-box-icon"></div>
                 <div class = "micro-box-content">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
@@ -130,12 +452,14 @@
                 <div class = "micro-box-content">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
             </div>
         </div>
-        <div class = "col-sm-12 col-md-4"></div>
-        <div class = "col-sm-12 col-md-4"></div>
+
     </div>
 </div>
 
 <input type = "hidden" id = "option" value = "1">
+<input type = "hidden" id = "selector" value = "0">
+<input type = "hidden" id = "attr-value" value = "">
+<input type = "hidden" id = "tag-value" value = "">
 <div class="modal fade" id = "Attr" tabindex="-1" role="dialog" aria-labelledby = "model_title">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
@@ -144,16 +468,21 @@
                 <h4 class="modal-title" id="model_title">引入元素属性</h4>
             </div>
             <div class="modal-body" >
-                <input type = "text" class = "form-control" placeholder="请填入页面自定义属性" >
+                <input id = "attr-tag" type = "text" class = "form-control" placeholder="请填入页面自定义属性" >
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">提交</button>
+                <button id = "submit-attr-tag" type="button" class="btn btn-primary">提交</button>
             </div>
         </div>
     </div>
 </div>
+<div class="alert alert-danger hide">这是一个失败提示！</div>
+
 </body>
 <script src = "../jquery/jquery-3.6.0.js" ></script>
+<script src = "../jquery/jquery.cookie.js"></script>
 <script src = "../bootstrap/js/bootstrap.min.js"></script>
+<script src = "../toastr/toastr.min.js"></script>
 <script src = "../js/home.js"></script>
+
 </html>

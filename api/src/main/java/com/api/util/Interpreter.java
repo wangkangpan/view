@@ -10,11 +10,10 @@ public class Interpreter {
   private static String interpreterPath = "F:\\anaconda\\envs\\project\\python.exe";
 
 
-  public String RunScript(String path) {
+  public String RunScript(String path, String url, String key, String value) {
 
         try {
-            String[] args = new String[]{"python", path,
-                    "https://blog.csdn.net/wb106173/article/details/100525624"};
+            String[] args = new String[]{"python", path, url, key, value};
             Process pr = Runtime.getRuntime().exec(args);
 
             //用输入输出流来截取结果
@@ -30,7 +29,7 @@ public class Interpreter {
             //  String result = new String(
             //          doReader(in).getBytes("ISO-8859-1"), "UTF-8"
             //  );
-            String error = doReader(in);
+//            String error = doReader(in);
              String result = doReader(in);
 
             in.close();

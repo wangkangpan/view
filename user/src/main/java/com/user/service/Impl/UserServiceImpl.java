@@ -22,17 +22,17 @@ public class UserServiceImpl implements UserService {
 
 
     @Autowired
-    UserMapper userMapper;
+    private UserMapper userMapper;
+
+//    @Autowired
+//    SendMailService sendMailService;
 
     @Autowired
-    SendMailService sendMailService;
-
+    private RedisTemplate redisTemplate;
     @Autowired
-    RedisTemplate redisTemplate;
-    @Autowired
-    PatternUtil patternUtil;
+    private PatternUtil patternUtil;
 
-    Integer AttachID = 6;
+    private Integer AttachID = 6;
 
     private User getUserByUserName(String userName){
         return userMapper.selectUserByUserName(userName);

@@ -1,5 +1,19 @@
 //域名
 const domain = 'http://localhost:8081';
+toastr.options = { // toastr配置
+    "closeButton": true, //是否显示关闭按钮
+    "debug": false, //是否使用debug模式
+    "progressBar": true, //是否显示进度条，当为false时候不显示；当为true时候，显示进度条，当进度条缩短到0时候，消息通知弹窗消失
+    "positionClass": "toast-top-full-width",
+    "showDuration": "400", //显示的动画时间
+    "hideDuration": "1000", //消失的动画时间
+    "timeOut": "5000", //展现时间
+    "extendedTimeOut": "2000", //加长展示时间
+    "showEasing": "swing", //显示时的动画缓冲方式
+    "hideEasing": "linear", //消失时的动画缓冲方式
+    "showMethod": "fadeIn", //显示时的动画方式
+    "hideMethod": "fadeOut" //消失时的动画方式
+};
 
 
 //邮件验证码
@@ -12,11 +26,13 @@ $("#emailVerify").click(function () {
         function (res) {
             let top = 300;
             let verifyButton = $('#emailVerify');
-            if(res.code != "200")
-                alert(res.value);
+            if(res.code !== "200"){
+                toastr.info(res.value);
+                return;
+            }
 
+            toastr.info(res.value);
             verifyButton.attr("disabled","disabled");
-
             let refreshButton = setInterval(function(){
                 verifyButton.html(top + 's');
                 top--;
@@ -31,7 +47,7 @@ $("#emailVerify").click(function () {
 
 
     }).fail(function () {
-        alert("发送失败");
+        toastr.error("系统错误");
     })
 
 });
@@ -46,9 +62,9 @@ $('#register-button').click(function () {
         email: $('input[name = "email"]').val(),
         certificate: $('input[name = "certificate"]').val()
     }).done(function (res) {
-        alert(res.value);
+        toastr.info(res.value);
     }).fail(function () {
-        alert("注册失败");
+        toastr.error("注册失败");
     })
 
 
@@ -62,16 +78,17 @@ $('#login-form').submit(function (e) {
             password: $('input[name = "password"]:eq(1)').val(),
         }).done(function (res) {
 
-            if(res.code != "200"){
-                alert(res.value);
+            if(res.code !== "200"){
+                toastr.info(res.value);
 
             }else{
-                window.location.href = domain + '/home'
+                $.cookie("token", res.value(),{expires:1});
+                window.location.href = domain + '/home';
 
             }
 
-    }).fail(function () {
-        alert("登陆失败");
+    }).fail(function (res) {
+       toastr.error("服务器内部错误-certificate:" + res.value);
     });
     e.preventDefault();
 });
