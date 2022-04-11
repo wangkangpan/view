@@ -36,7 +36,7 @@ $("#emailVerify").click(function () {
             let refreshButton = setInterval(function(){
                 verifyButton.html(top + 's');
                 top--;
-                if(top == 0){
+                if(top === 0){
                     verifyButton.removeAttr("disabled");
                     verifyButton.html('发送验证');
                     clearInterval(refreshButton);
@@ -82,7 +82,7 @@ $('#login-form').submit(function (e) {
                 toastr.info(res.value);
 
             }else{
-                $.cookie("token", res.value(),{expires:1});
+                $.cookie("token", res.value,{expires:1});
                 window.location.href = domain + '/home';
 
             }

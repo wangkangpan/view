@@ -10,10 +10,10 @@ public class Interpreter {
   private static String interpreterPath = "F:\\anaconda\\envs\\project\\python.exe";
 
 
-  public String RunScript(String path, String url, String key, String value) {
+  public String RunScript(String path, String url, String tag, String key, String value) {
 
         try {
-            String[] args = new String[]{"python", path, url, key, value};
+            String[] args = new String[]{"python", path, url, tag, key, value};
             Process pr = Runtime.getRuntime().exec(args);
 
             //用输入输出流来截取结果
@@ -50,13 +50,12 @@ public class Interpreter {
 
   //获取缓冲对象存储的字符串结果
   private String doReader(BufferedReader br) throws IOException {
-      String line = null;
-      String result = "";
+      StringBuilder result = new StringBuilder();
+      String line;
       while ((line = br.readLine()) != null) {
-          System.out.println(line);
-          result += line;
+          result.append(line);
       }
-      return result;
+      return result.toString();
   }
 
 

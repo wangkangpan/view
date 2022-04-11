@@ -4,8 +4,8 @@ import com.api.util.CreateString;
 import com.user.util.PatternUtil;
 import com.user.mapper.UserMapper;
 import com.user.pojo.User;
-import com.user.service.SendMailService;
 import com.user.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -18,21 +18,20 @@ import java.util.Date;
 
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
 
-    @Autowired
-    private UserMapper userMapper;
+    private final UserMapper userMapper;
 
 //    @Autowired
 //    SendMailService sendMailService;
 
-    @Autowired
-    private RedisTemplate redisTemplate;
-    @Autowired
-    private PatternUtil patternUtil;
+    private final RedisTemplate<String,String> redisTemplate;
 
-    private Integer AttachID = 6;
+    private final PatternUtil patternUtil;
+
+    private final Integer AttachID = 6;
 
     private User getUserByUserName(String userName){
         return userMapper.selectUserByUserName(userName);
@@ -41,10 +40,8 @@ public class UserServiceImpl implements UserService {
     public boolean checkPasswordByUserName(String userName, String password){
         User user = this.getUserByUserName(userName);
 
-        if(!user.getPassword().equals(password))
-            return false;
+        return user.getPassword().equals(password);
 
-        return true;
     }
 
 
@@ -64,17 +61,14 @@ public class UserServiceImpl implements UserService {
 
     private boolean legalRegister(User user){
 
-        if(!patternUtil.isEmail(user.getEmail())
+        return patternUtil.isEmail(user.getEmail())
                 ||user.getPassword() == null
                 || user.getTelephone() == null
                 || user.getUserName() == null
                 || !user.getCertificate().equals(
                     redisTemplate.opsForValue().get(user.getEmail())
-                )
-        ){
-            return false;
-        }
-        return true;
+                );
+
     }
 
 }

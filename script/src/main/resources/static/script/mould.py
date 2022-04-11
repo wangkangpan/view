@@ -5,7 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-def selectContentByid(url, key, value):
+def selectContentByid(url, tag, key, value):
     try:
 
         co = webdriver.ChromeOptions()
@@ -38,4 +38,4 @@ if __name__ == '__main__':
     # args.append('https://www.baidu.com/')
     # args.append('id')
     # args.append('su')
-    print(selectContentByid(args[0], args[1], args[2]), end="")
+    print(selectContentByid(args[0], args[1], args[2], args[3]), end="")

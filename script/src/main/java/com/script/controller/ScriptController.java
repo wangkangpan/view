@@ -18,15 +18,15 @@ import java.io.IOException;
 public class ScriptController {
 
     @RequestMapping("/run")
-    public String run(String url, String key, String value) throws IOException {
+    public String run(String url,String tag, String key, String value) throws IOException {
         //自定义脚本解释器
         Interpreter interpreter = new Interpreter();
         //获取静态资源路径
         Resource resource = new ClassPathResource(
                 "/static/script/mould.py"
         );
-        String res = interpreter.RunScript(resource.getFile().getPath(), url, key, value);
-        return res;
+        return interpreter.RunScript(resource.getFile().getPath(), url, tag, key, value);
+
 
     }
 }
