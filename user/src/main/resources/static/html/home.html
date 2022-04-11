@@ -15,14 +15,7 @@
     <link rel = "stylesheet" href = "../icon/middle/iconfont.css" >
     <link rel = "stylesheet" href = "../icon/single/iconfont.css">
     <link rel = "stylesheet" href = "../css/home.css">
-    <style>
-        .alert{
-            position: fixed;
-            width: 50%;
-            margin-left: 20%;
-            z-index: 2000;
-        }
-    </style>
+
 </head>
 <body>
 <div class = "wrapper">
@@ -78,7 +71,7 @@
                                 </ul>
                             </div>
 
-                            <input class = "form-control input-lg" id = "info" placeholder="请键入url">
+                            <input class = "form-control input-lg" id = "info" placeholder="请键入url"/>
                             <div class = "input-group-btn">
                                 <button type = "button" id = 'doSearch' class = "btn btn-primary btn-lg">快速开始</button>
                             </div>
@@ -132,7 +125,7 @@
 
         </div>
         <div class = "col-sm-12 col-md-6 col-lg-4">
-            <svg width="356px" height="462px" viewBox="0 0 416 562" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <svg width="356px" height="462px" viewBox="0 0 416 562" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
                 <title>手机</title>
                 <desc>Created with Sketch.</desc>
@@ -438,18 +431,36 @@
 
         <div class = "col-sm-12 col-md-6 col-lg-4"  style = "margin-top: 20px;">
             <div class = "micro-box">
-                <div class = "micro-box-icon"></div>
-                <div class = "micro-box-content">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+                <div class = "micro-box-icon">
+                    <button type="button" class="btn btn-danger btn-circle btn-xl">
+                        <span class="iconfont icon-single" style = "font-size: 60px;position: absolute;top:0;bottom: 0;left: 0;right: 0;"></span>
+                    </button>
+                    <span><a>Git地址</a></span>
+                </div>
+
+                <div class = "micro-box-content">git开源项目地址,提供新的创意到项目,clone项目到本地。</div>
             </div>
 
             <div class = "micro-box">
-                <div class = "micro-box-icon"></div>
-                <div class = "micro-box-content">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+                <div class = "micro-box-icon">
+                    <button type="button" class="btn btn-danger btn-circle btn-xl">
+                        <span class="iconfont icon-single" style = "font-size: 60px;position: absolute;top:0;bottom: 0;left: 0;right: 0;"></span>
+                    </button>
+                    <span><a>评论区</a></span>
+                </div>
+
+                <div class = "micro-box-content">指出项目不足，多人交流，提供技术支持，吐槽遇到的问题。</div>
             </div>
 
             <div class = "micro-box">
-                <div class = "micro-box-icon"></div>
-                <div class = "micro-box-content">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+                <div class = "micro-box-icon">
+                    <button type="button" class="btn btn-danger btn-circle btn-xl">
+                        <span class="iconfont icon-single" style = "font-size: 60px;position: absolute;top:0;bottom: 0;left: 0;right: 0;"></span>
+                    </button>
+                    <span><a>反馈</a></span>
+                </div>
+
+                <div class = "micro-box-content">提供更好的建议或者资讯</div>
             </div>
         </div>
 
@@ -468,7 +479,7 @@
                 <h4 class="modal-title" id="model_title">引入元素属性</h4>
             </div>
             <div class="modal-body" >
-                <input id = "attr-tag" type = "text" class = "form-control" placeholder="请填入页面自定义属性" >
+                <input id = "attr-tag" type = "text" class = "form-control" placeholder="请填入页面自定义属性" />
             </div>
             <div class="modal-footer">
                 <button id = "submit-attr-tag" type="button" class="btn btn-primary">提交</button>
@@ -476,7 +487,6 @@
         </div>
     </div>
 </div>
-<div class="alert alert-danger hide">这是一个失败提示！</div>
 
 </body>
 <script src = "../jquery/jquery-3.6.0.js" ></script>
