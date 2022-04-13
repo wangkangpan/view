@@ -3,11 +3,9 @@ package com.user.service.Impl;
 import com.api.util.CreateString;
 import com.user.util.PatternUtil;
 import com.user.mapper.UserMapper;
-import com.user.pojo.User;
+import com.user.entity.User;
 import com.user.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-
 
 
 import org.springframework.data.redis.core.RedisTemplate;

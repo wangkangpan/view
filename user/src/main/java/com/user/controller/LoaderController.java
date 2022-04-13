@@ -3,7 +3,7 @@ package com.user.controller;
 
 import com.api.util.CreateString;
 import com.user.util.PatternUtil;
-import com.user.pojo.User;
+import com.user.entity.User;
 import com.user.service.SendMailService;
 import com.user.service.UserService;
 import com.api.util.JwtUtils;

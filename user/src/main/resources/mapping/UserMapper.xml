@@ -3,12 +3,12 @@
 
 <mapper namespace="com.user.mapper.UserMapper">
 
-    <select id="selectUserByUserName" parameterType="String" resultType="com.user.pojo.User">
+    <select id="selectUserByUserName" parameterType="String" resultType="com.user.entity.User">
         select * from user where userName = #{userName}
         limit 1
     </select>
 
-     <insert id="insertUser" parameterType="com.user.pojo.User">
+     <insert id="insertUser" parameterType="com.user.entity.User">
         insert into user values(
             #{user.id}
             #{user.userName}
@@ -19,7 +19,7 @@
         )
     </insert>
 
-    <insert id="insertUserIDAndCertificate" parameterType="com.user.pojo.User">
+    <insert id="insertUserIDAndCertificate" parameterType="com.user.entity.User">
         insert into user(id, userName, password, email, telephone) values(
             #{id},
             #{userName},

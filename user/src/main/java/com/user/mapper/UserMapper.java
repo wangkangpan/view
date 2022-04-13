@@ -1,6 +1,6 @@
 package com.user.mapper;
 
-import com.user.pojo.User;
+import com.user.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
