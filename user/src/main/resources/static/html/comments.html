@@ -5,7 +5,10 @@
     <title>Comments</title>
     <link rel = "stylesheet" href = "../bootstrap/css/bootstrap.min.css">
     <link rel = "stylesheet" href = "../bootstrap/css/bootstrap-theme.min.css">
+    <link rel = "stylesheet" href = "../toastr/toastr.min.css">
+    <link rel = "stylesheet" href = "../shadow/shadow.css">
     <link rel = "stylesheet" href = "../css/comments.css">
+
 
 
 </head>
@@ -28,7 +31,7 @@
                     公告
                 </a>
             </li>
-            <li><a href="#exchange" data-toggle="tab">交流</a></li>
+
             <li><a href="#community" data-toggle="tab">社区</a></li>
         </ul>
     </div>
@@ -38,20 +41,79 @@
             <div id = "announcement-father" class = "ge"></div>
 
         </div>
-        <div class="tab-pane fade" id="exchange">
-            我是交流
-        </div>
         <div class="tab-pane fade" id="community">
-            我是社区
+            <div class = "community-leader">
+                <div class="col-md-3 col-sm-6">
+                    <img src="../images/下楼做核酸.png" style="width: 200px;height: 200px;">
+
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <img src="../images/做核酸.png" style="width: 200px;height: 200px;">
+
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <img src="../images/测量体温.png" style="width: 200px;height: 200px;">
+
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <img src="../images/核酸检测.png" style="width: 200px;height: 200px;">
+
+                </div>
+            </div>
+            <div id = "community-father" class = "ge"></div>
+            <div class = "shadow-sharp card col-lg-5">
+                <div class = "header">
+                    <h2>疫情无小事</h2>
+                </div>
+                <div class = "description">
+                    <p>
+                        众志成城，战胜疫情
+                    </p>
+                    <a href="#">The Detail</a>
+                </div>
+            </div>
+
+            <div class = "shadow-4 card col-lg-5 col-lg-offset-2">
+                <div class = "header">
+                    <h2>01</h2>
+                </div>
+                <div class = "description">
+                    <p>asdasdasdadasdasdadasd
+                        asdasdasdadasdasdadasd
+                        asdasdasdadasdasdadasd
+                    </p>
+                    <a href="#">The Detail</a>
+                </div>
+            </div>
+
+
         </div>
     </div>
 </div>
 
 
 </body>
+<div id = "model-info" class="modal fade" role="info">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class = "modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 id = "model-title"></h4>
+            </div>
+            <div class = "modal-body">
+                <p id = "model-content"></p>
+            </div>
+            <div class="modal-footer">
+                <p id = "model-footer"></p>
+            </div>
+        </div>
+    </div>
+</div>
 <script src = "../jquery/jquery-3.6.0.js" ></script>
 <script src = "../jquery/jquery.cookie.js"></script>
 <script src = "../bootstrap/js/bootstrap.min.js"></script>
 <script src = "../bootstrap/js/bootstrap-paginator.js"></script>
+<script src = "../toastr/toastr.min.js"></script>
 <script src = "../js/comments.js"></script>
+
 </html>

@@ -30,3 +30,7 @@
     height: 1px;
     border-top: 1px solid #ccc;
 }
+.pagination li{
+    cursor:pointer;
+}
+

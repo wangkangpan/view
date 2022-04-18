@@ -57,5 +57,10 @@ regex:
 redis:
   ip: '127.0.1'
   port: 6379
-
+#分页插件
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  #parms 参数属性别名
 

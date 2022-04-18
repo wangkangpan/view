@@ -4,8 +4,16 @@
 <mapper namespace="com.user.mapper.AnnouncementMapper">
 
     <select id="selectAll" resultType="com.user.entity.po.Announcement">
-        select * from announcement
+        select * from announcement limit #{pageStart}, #{pageEnd}
     </select>
 
+    <select id="selectCountFromAnnouncement" resultType="java.lang.Integer">
+        select count(1) from announcement
+    </select>
 
+        <select id="selectAnnouncementById" resultType="com.user.entity.po.Announcement">
+            select * from announcement
+            where id = #{id}
+            limit 1
+        </select>
 </mapper>
