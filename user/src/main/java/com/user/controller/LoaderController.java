@@ -8,6 +8,7 @@ import com.user.service.SendMailService;
 import com.user.service.UserService;
 import com.api.util.JwtUtils;
 import com.user.vo.Result;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -20,19 +21,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.concurrent.TimeUnit;
 
 @RestController
+@RequiredArgsConstructor
 public class LoaderController {
 
-
-    @Autowired
-    UserService userService;
-    @Autowired
-    SendMailService sendMailService;
-
-    @Autowired
-
-    RedisTemplate redisTemplate;
-    @Autowired
-    PatternUtil patternUtil;
+    private final UserService userService;
+    private final SendMailService sendMailService;
+    private final RedisTemplate redisTemplate;
+    private final PatternUtil patternUtil;
 
     @Value("${spring.mail.register.subject}")
     private String subject;
@@ -52,9 +47,9 @@ public class LoaderController {
     public Result verifyPassword(String userName, String password){
 
         if(userService.checkPasswordByUserName(userName, password)){
-            return new Result(Result.Success, new JwtUtils().sign(userName));
+            return new Result(Result.Success, new JwtUtils().sign(userName),null);
         }
-        return new Result(Result.DataBaseDefault, "账号或密码错误");
+        return new Result(Result.DataBaseDefault, "账号或密码错误",null);
 
     }
 
@@ -64,7 +59,7 @@ public class LoaderController {
             //禁止频繁访问
             String ip = request.getRemoteAddr();
             if(!patternUtil.isEmail(email) || redisTemplate.hasKey(ip))
-                return new Result(Result.VerifyEmailMessageDefault, "发送失败");
+                return new Result(Result.VerifyEmailMessageDefault, "发送失败",null);
 
 
             ValueOperations valueOperations = redisTemplate.opsForValue();
@@ -80,17 +75,17 @@ public class LoaderController {
                     email,
                     subject,
                     content + verifyCode);
-            return new Result(Result.Success, "发送成功");
+            return new Result(Result.Success, "发送成功",null);
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public Result addUser(User user){
 
         if(userService.injectRegister(user) < 1) {
-            return new Result(Result.DataBaseDefault, "注册失败");
+            return new Result(Result.DataBaseDefault, "注册失败",null);
 
         }else {
-            return new Result(Result.Success, "注册成功");
+            return new Result(Result.Success, "注册成功",null);
 
         }
     }

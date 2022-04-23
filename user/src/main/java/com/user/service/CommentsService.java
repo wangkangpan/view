@@ -1,6 +1,7 @@
 package com.user.service;
 
 import com.user.entity.po.Announcement;
+import com.user.entity.po.Comments;
 import com.user.entity.vo.Page;
 
 import java.util.List;
@@ -12,4 +13,12 @@ public interface CommentsService {
     Integer getCountAnnouncements();
 
     Announcement getAnnouncementById(String id);
+
+    Integer addAnnouncement(Announcement announcement);
+
+    //    ==============================================================
+    List<Comments>  getAllComments(Page page);
+
+    Integer getCountComments();
+
 }

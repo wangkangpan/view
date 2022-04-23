@@ -33,4 +33,17 @@
 .pagination li{
     cursor:pointer;
 }
+.card{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.addOne{
+    font-size: 30px;
+    color:#337ab7;
+}
+.addOne:hover{
+    font-size: 32px;
+    color: #449d44;;
+    cursor: pointer;
+}
 

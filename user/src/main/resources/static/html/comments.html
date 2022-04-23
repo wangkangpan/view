@@ -7,6 +7,7 @@
     <link rel = "stylesheet" href = "../bootstrap/css/bootstrap-theme.min.css">
     <link rel = "stylesheet" href = "../toastr/toastr.min.css">
     <link rel = "stylesheet" href = "../shadow/shadow.css">
+    <link rel = "stylesheet" href = "../icon/single/iconfont.css">
     <link rel = "stylesheet" href = "../css/comments.css">
 
 
@@ -25,7 +26,7 @@
 </div>
 <div class = "container">
     <div class = "row">
-        <ul id="menu" class="nav nav-tabs">
+        <ul id="menu" class="nav nav-tabs" style="height: 43px;">
             <li class="active">
                 <a href="#announcement" data-toggle="tab">
                     公告
@@ -33,6 +34,9 @@
             </li>
 
             <li><a href="#community" data-toggle="tab">社区</a></li>
+
+            <span id = "addOneItem" class = "addOne iconfont icon-add" style="position: absolute;display: inline;padding-left: 20px;"> </span>
+
         </ul>
     </div>
     <div id="myTabContent" class="tab-content">
@@ -41,51 +45,27 @@
             <div id = "announcement-father" class = "ge"></div>
 
         </div>
+
         <div class="tab-pane fade" id="community">
-            <div class = "community-leader">
+            <div class = "community-leader row">
                 <div class="col-md-3 col-sm-6">
                     <img src="../images/下楼做核酸.png" style="width: 200px;height: 200px;">
 
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <img src="../images/做核酸.png" style="width: 200px;height: 200px;">
-
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <img src="../images/测量体温.png" style="width: 200px;height: 200px;">
-
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <img src="../images/核酸检测.png" style="width: 200px;height: 200px;">
-
                 </div>
             </div>
-            <div id = "community-father" class = "ge"></div>
-            <div class = "shadow-sharp card col-lg-5">
-                <div class = "header">
-                    <h2>疫情无小事</h2>
-                </div>
-                <div class = "description">
-                    <p>
-                        众志成城，战胜疫情
-                    </p>
-                    <a href="#">The Detail</a>
-                </div>
+            <div id="Paginator-comments" style="text-align: center"> <ul id="pageLimit-comments"></ul> </div>
+            <div class="row">
+                <div id = "community-father" class = "ge"></div>
             </div>
-
-            <div class = "shadow-4 card col-lg-5 col-lg-offset-2">
-                <div class = "header">
-                    <h2>01</h2>
-                </div>
-                <div class = "description">
-                    <p>asdasdasdadasdasdadasd
-                        asdasdasdadasdasdadasd
-                        asdasdasdadasdasdadasd
-                    </p>
-                    <a href="#">The Detail</a>
-                </div>
-            </div>
-
 
         </div>
     </div>
@@ -93,7 +73,8 @@
 
 
 </body>
-<div id = "model-info" class="modal fade" role="info">
+<!--展示Modal-->
+<div id = "modal-info" class="modal fade" role="info">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class = "modal-header">
@@ -109,6 +90,27 @@
         </div>
     </div>
 </div>
+<!--输入Modal-->
+<div id="modal-input" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body…</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src = "../jquery/jquery-3.6.0.js" ></script>
 <script src = "../jquery/jquery.cookie.js"></script>
 <script src = "../bootstrap/js/bootstrap.min.js"></script>

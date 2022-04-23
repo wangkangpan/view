@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!--对应该实体类的结果集-->
+<mapper namespace="com.user.mapper.CommentsMapper">
+
+    <select id="selectAllComments" resultType="com.user.entity.po.Comments">
+        select comments.id,comments.title,comments.comments,user.userName,comments.createTime,relation_user_comments.userId
+        from comments
+        left join relation_user_comments on relation_user_comments.id = comments.id
+        left join user on relation_user_comments.userId = user.id
+        limit #{pageStart}, #{pageEnd}
+    </select>
+
+    <select id="selectCountFromComments" resultType="Integer">
+        select count(1) from comments
+    </select>
+</mapper>

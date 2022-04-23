@@ -11,9 +11,14 @@
         select count(1) from announcement
     </select>
 
-        <select id="selectAnnouncementById" resultType="com.user.entity.po.Announcement">
-            select * from announcement
-            where id = #{id}
-            limit 1
-        </select>
+    <select id="selectAnnouncementById" resultType="com.user.entity.po.Announcement">
+        select * from announcement
+        where id = #{id}
+        limit 1
+    </select>
+
+    <insert id="insertAnnouncement" parameterType="com.user.entity.po.Announcement">
+        insert into announcement(title,content,createTime)
+        values(#{title},#{content},#{createTime})
+    </insert>
 </mapper>

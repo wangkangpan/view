@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import lombok.Data;
 
 @Data
-public class Result {
+public class Result<T> {
 
     public static final String Success = "200";
     public static final String UnKnownDefault = "500";
@@ -16,9 +16,11 @@ public class Result {
 
     String code;
     String value;
-    public Result(String code, String value){
+    T object;
+    public Result(String code, String value,T object){
         this.setCode(code);
         this.setValue(value);
+        this.setObject(object);
     }
 
     public String toJson(){

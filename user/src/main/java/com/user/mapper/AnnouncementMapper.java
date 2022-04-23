@@ -1,6 +1,7 @@
 package com.user.mapper;
 
 import com.user.entity.po.Announcement;
+import com.user.entity.po.Comments;
 import com.user.entity.vo.Page;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -15,4 +16,6 @@ public interface AnnouncementMapper {
     Integer selectCountFromAnnouncement();
 
     Announcement selectAnnouncementById(String id);
+
+    Integer insertAnnouncement(Announcement announcement);
 }
