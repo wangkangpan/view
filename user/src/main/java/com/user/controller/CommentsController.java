@@ -4,7 +4,7 @@ import com.user.entity.po.Announcement;
 import com.user.entity.po.Comments;
 import com.user.entity.vo.Page;
 import com.user.service.CommentsService;
-import com.user.vo.Result;
+import com.vo.Result;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

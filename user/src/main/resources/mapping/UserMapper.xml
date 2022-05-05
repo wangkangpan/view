@@ -11,21 +11,23 @@
      <insert id="insertUser" parameterType="com.user.entity.User">
         insert into user values(
             #{user.id}
+            #{user.userId}
             #{user.userName}
             #{user.password}
             #{user.email}
             #{user.telephone}
-            #{certificate}
+            #{createTime}
         )
     </insert>
 
     <insert id="insertUserIDAndCertificate" parameterType="com.user.entity.User">
-        insert into user(id, userName, password, email, telephone) values(
-            #{id},
+        insert into user(userId, userName, password, email, telephone, createTime) values(
+            #{userId},
             #{userName},
             #{password},
             #{email},
-            #{telephone}
+            #{telephone},
+            #{createTime}
         )
     </insert> 
 

@@ -44,7 +44,7 @@ function getCommentItem(CommentId, CommentTitle, CommentContent, CommentTime){
             "</div>" +
             "<div class = 'description'>" +
             "<p>" + CommentContent + "</p>" +
-            "<a href='#'>THE DETAIL</a>" +
+            "<a data-toggle='modal' href='Item' data-target='#modal' rel='noopener noreferrer'>THE DETAIL</a>" +
             "</div>" +
             "</div>";
     }else{
@@ -54,7 +54,7 @@ function getCommentItem(CommentId, CommentTitle, CommentContent, CommentTime){
             "</div>" +
             "<div class = 'description'>" +
             "<p>" + CommentContent + "</p>" +
-            "<a href='#'>THE DETAIL</a>" +
+            "<a data-toggle='modal' href='Item' data-target='#modal' rel='noopener noreferrer'>THE DETAIL</a>" +
             "</div>" +
             "</div>";
     }
@@ -283,7 +283,7 @@ $('#addOneItem').click(function () {
     let ActivityLink = $(".active").children("a").attr("href");
     if(ActivityLink === "#announcement"){
         //新增一条公告
-        $("#modal-input").show();
+        $("#modal-input").modal();
     }else if(ActivityLink === "#community"){
         //新增一个comments
     }else{

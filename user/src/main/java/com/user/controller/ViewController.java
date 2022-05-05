@@ -17,6 +17,16 @@ public class ViewController {
         return "html/home";
     }
 
+    @RequestMapping("/comments")
+    public String toComments(){
+        return "html/comments";
+    }
+
+    @RequestMapping("/Item")
+    public String toItem(){
+        return "html/Item";
+    }
+
 
 
 

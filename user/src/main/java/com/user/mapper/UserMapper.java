@@ -13,7 +13,7 @@ public interface UserMapper {
 
     Integer insertUserIDAndCertificate(User user);
 
-    Integer updateUserByIDAndCertificate(User user);
+//    Integer updateUserByIDAndCertificate(User user);
 
 
 }

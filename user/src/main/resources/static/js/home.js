@@ -65,9 +65,16 @@ $('#doSearch').click(function () {
                     value: value
                 }
             ).done(function (data) {
-                toastr.success('操作成功');
-            }).fail(function (info) {
-                toastr.error('操作失败');
+                alert(JSON.stringify(data))
+                if(data.code === 200){
+                    toastr.success('操作成功');
+                }else{
+                    toastr.error(data.value);
+                }
+
+            }).fail(function (data) {
+                alert(JSON.stringify(data.responseText))
+                toastr.error(data.value);
             });
         //
         // case '2': $.post();

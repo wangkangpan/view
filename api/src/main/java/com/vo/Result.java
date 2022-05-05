@@ -1,4 +1,4 @@
-package com.user.vo;
+package com.vo;
 
 
 import com.alibaba.fastjson.JSONObject;
@@ -12,6 +12,7 @@ public class Result<T> {
     public static final String DataBaseDefault = "501";
     public static final String ProgramDefault = "502";
     public static final String VerifyEmailMessageDefault = "503";
+    public static final String UnLoad = "504";
 
 
     String code;
@@ -23,13 +24,13 @@ public class Result<T> {
         this.setObject(object);
     }
 
-    public String toJson(){
+    public JSONObject toJson(){
         JSONObject jsonObject = new JSONObject();
 
         jsonObject.put("code", code);
         jsonObject.put("value", value);
-
-        return jsonObject.toString();
+        jsonObject.put("object",object.toString());
+        return jsonObject;
     }
 
 

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>comments</title>
+</head>
+<link rel = "stylesheet" href = "../bootstrap/css/bootstrap.min.css">
+<link rel = "stylesheet" href = "../bootstrap/css/bootstrap-theme.min.css">
+
+<style>
+    .info-pic img{
+        width: 120px;
+        height: 120px;
+    }
+    .info-name span{
+        color: #2aabd2;
+        cursor: pointer;
+    }
+    .do-reply span{
+        color: #2aabd2;
+        cursor: pointer;
+    }
+    .time{
+        color: #999;
+        display: inline-block;
+        margin-left: 12px;
+        font-family: Microsoft Yahei,Helvetica,sans-serif;
+    }
+    .comment-content{
+        word-break:break-all;
+        margin-top: 2px;
+    }
+    .children-comments{
+        background-color: #f7f7f7;
+
+    }
+    .children-comment{
+
+    }
+    .children-comment b{
+        font-weight: 600;
+        padding-left: 3px;
+    }
+    .reply-content{
+        line-height: 24px;
+        padding: 8px 16px 10px;
+        margin-top: 10px;
+    }
+    .reply-block{
+        padding: 0px 16px 0px;
+    }
+    .micro-comment{
+        padding: 20px 20px 20px 20px;
+    }
+    .reply-box{
+        margin-top: 40px;
+        width: 100%;
+    }
+</style>
+<body style="padding-top: 60px;">
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+<div class = "modal-body">
+    <div class = "micro-comment">
+        <div class = "parent-comment row">
+            <div class = "info-pic col-md-2">
+                <img class = "img-circle" src="../images/1.jpg" />
+            </div>
+            <div class = "col-md-10">
+                <div class = "comment-head row">
+                    <div class = "info col-md-2">
+                        <div class = "info-name">
+                            <span>胡图图</span>
+                        </div>
+                    </div>
+                    <div class = "time col-md-2">2022-5-5</div>
+                    <div class = "do-reply col-md-2"><span>回复</span></div>
+
+                </div>
+                <div class = "comment-content row">
+                    兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草
+                </div>
+                <div class = "children-comments">
+                    <div  class = "children-comment">
+                        <div class = "reply-content">
+                            <b class = "answer">A</b>回复<b class = "question">B</b><b>:</b> 我撒旦飒飒大苏打萨达萨达萨达倒萨倒萨倒萨撒打撒打撒打撒打撒大多数大苏打撒大大撒旦撒旦撒的撒的撒大苏打撒旦撒旦撒旦撒的撒旦阿松大
+                        </div>
+                        <div class = "row reply-block" >
+                            <div class = "reply-date col-md-2">
+                                2022-5-5
+                            </div>
+                            <div class = "do-reply col-md-2">
+                                <span>回复</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div  class = "children-comment">
+                        <div class = "reply-content">
+                            <b class = "answer">A</b>回复<b class = "question">B</b><b>:</b> 我撒旦飒飒大苏打萨达萨达萨达倒萨倒萨倒萨撒打撒打撒打撒打撒大多数大苏打撒大大撒旦撒旦撒的撒的撒大苏打撒旦撒旦撒旦撒的撒旦阿松大
+                        </div>
+                        <div class = "row reply-block" >
+                            <div class = "reply-date col-md-2">
+                                2022-5-5
+                            </div>
+                            <div class = "do-reply col-md-2">
+                                <span>回复</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class = "children-comment">
+                        <div class = "reply-content">
+                            <b class = "answer">A</b>回复<b class = "question">B</b><b>:</b> 我撒旦飒飒大苏打萨达萨达萨达倒萨倒萨倒萨撒打撒打撒打撒打撒大多数大苏打撒大大撒旦撒旦撒的撒的撒大苏打撒旦撒旦撒旦撒的撒旦阿松大
+                        </div>
+                        <div class = "row reply-block" >
+                            <div class = "reply-date col-md-2">
+                                2022-5-5
+                            </div>
+                            <div class = "do-reply col-md-2">
+                                <span>回复</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "children-comment">
+                        <div class = "reply-content">
+                            <b class = "answer">A</b>回复<b class = "question">B</b><b>:</b> 我撒旦飒飒大苏打萨达萨达萨达倒萨倒萨倒萨撒打撒打撒打撒打撒大多数大苏打撒大大撒旦撒旦撒的撒的撒大苏打撒旦撒旦撒旦撒的撒旦阿松大
+                        </div>
+                        <div class = "row reply-block" >
+                            <div class = "reply-date col-md-2">
+                                2022-5-5
+                            </div>
+                            <div class = "do-reply col-md-2">
+                                <span>回复</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class = "reply-box row input-group">
+                    <textarea class = "form-control" style="resize:vertical;min-height: 100px;width: 100%"></textarea>
+                    <span class = "input-group-addon btn btn-primary">回复</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

@@ -48,10 +48,10 @@ public class UserServiceImpl implements UserService {
         if(!legalRegister(user))
             return 0;
 
-        user.setId(
+        user.setUserId(
                 new Date().getTime() + '-' + CreateString.getRandomString(AttachID)
         );
-
+        user.setCreateTime(new Date());
         return userMapper.insertUserIDAndCertificate(user);
     }
 
@@ -59,11 +59,12 @@ public class UserServiceImpl implements UserService {
 
     private boolean legalRegister(User user){
 
+        //0&1 = 0; 0|1 = 1
         return patternUtil.isEmail(user.getEmail())
-                ||user.getPassword() == null
-                || user.getTelephone() == null
-                || user.getUserName() == null
-                || !user.getCertificate().equals(
+                && user.getPassword() != null
+                && user.getTelephone() != null
+                && user.getUserName() != null
+                && user.getCertificate().equals(
                     redisTemplate.opsForValue().get(user.getEmail())
                 );
 
