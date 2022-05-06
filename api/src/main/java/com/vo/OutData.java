@@ -1,12 +1,14 @@
-package com.script.entity.vo;
+package com.vo;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import cn.afterturn.easypoi.excel.annotation.ExcelTarget;
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
 @Data
+@Component
 @ExcelTarget("OutData")
 public class OutData implements Serializable {
 

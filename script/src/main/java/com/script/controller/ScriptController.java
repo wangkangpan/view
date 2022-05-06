@@ -1,7 +1,12 @@
 package com.script.controller;
 
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.ExportParams;
 import com.api.util.Interpreter;
+import com.vo.OutData;
 import com.vo.Result;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -9,11 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.naming.spi.DirStateFactory;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
+
 /*
 * logic只允许返回数据,执行脚本等逻辑任务
 *
 */
+@Slf4j
 @CrossOrigin
 @RestController
 @RequestMapping("/script")
@@ -27,9 +36,29 @@ public class ScriptController {
         Resource resource = new ClassPathResource(
                 "/static/script/mould.py"
         );
-        interpreter.RunScript(resource.getFile().getPath(), url, tag, key, value);
+        List<OutData> res = interpreter.RunScript(resource.getFile().getPath(), url, tag, key, value);
+        this.importResult(res,url);
         return new Result<>(Result.Success,"200",null);
 
 
+    }
+
+    //带出Excel文件
+    private void importResult(List<OutData> params,String url){
+
+        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(url,"导出结果"),
+                OutData.class, params);
+        try{
+            FileOutputStream fileOutputStream = new FileOutputStream("result.xls");
+            //导出完成
+            workbook.write(fileOutputStream);
+            fileOutputStream.close();
+            workbook.close();
+
+        }catch(IOException e){
+            log.error("IOException:" + e.getMessage());
+        }catch (Exception e){
+            log.error("Exception:" + e.getMessage());
+        }
     }
 }

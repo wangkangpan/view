@@ -33,4 +33,11 @@ mybatis:
     aggressive-lazy-loading: false
     lazy-loading-enabled: true
 
+script:
+  thread:
+    num:
+      init: 5
+      max: 10
+    time:
+      wait: 60
 

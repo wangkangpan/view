@@ -1,8 +1,8 @@
 package com.api.util;
 
-
+import com.vo.OutData;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,8 +15,10 @@ public class Interpreter {
     //      python解析器的路径
   private static String interpreterPath = "F:\\anaconda\\envs\\project\\python.exe";
 
+  @Autowired
+  private OutData outData;
 
-  public String RunScript(String path, String url, String tag, String key, String value) {
+  public List<OutData> RunScript(String path, String url, String tag, String key, String value) {
 
         try {
             String[] args = new String[]{"python", path, url, tag, key, value};
@@ -36,14 +38,14 @@ public class Interpreter {
             //          doReader(in).getBytes("ISO-8859-1"), "UTF-8"
             //  );
 //            String error = doReader(in);
-             List<String> result = doReader(in);
-            this.packageResult(result);
+            List<OutData> result = doReader(in, tag, key, value);
+
             in.close();
             isError.close();
             //InterruptedException
             pr.waitFor();
-//            return result;
-            return null;
+            return result;
+
         }
         catch(IOException e){
             log.error("IOException:" + e.getMessage());
@@ -59,20 +61,26 @@ public class Interpreter {
 
 
   //获取缓冲对象存储的字符串结果
-  private List<String> doReader(BufferedReader br) throws IOException {
-      List<String> result = new ArrayList<>();
+  private List<OutData> doReader(BufferedReader br, String tag, String key, String attr){
+      List<OutData> result = new ArrayList<>();
       String line;
-      while ((line = br.readLine()) != null) {
-          result.add(line);
+      try{
+          while ((line = br.readLine()) != null) {
+              outData.setContent(line);
+              outData.setTag(tag);
+              outData.setKey(key);
+              outData.setAttr(attr);
+              result.add(outData);
+          }
+      }catch(IOException e){
+          log.error("IOException:" + e.getMessage());
+      }catch (Exception e){
+          log.error("Exception:" + e.getMessage());
       }
       return result;
   }
 
-  private void packageResult(List<String> params){
 
-//      Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("导出结果","学生"),
-//              StudentEntity .class, list);
-  }
 
 
 }
