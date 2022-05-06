@@ -48,16 +48,20 @@
                         <div class = "input-group col-lg-12" style="margin-right: 10px;">
                             <div class="input-group-btn">
                                 <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100%;min-width: 60px;">
-                                    <span id = "key" >key</span>
+                                    <span>Params</span>
                                     <span class="caret"></span>
                                 </button>
                                 <ul id = "z-menu" class="dropdown-menu">
-                                    <li><a href = "javascript:$('#current').html('id')">id</a></li>
-                                    <li><a href = "javascript:$('#current').html('content')">content</a></li>
-                                    <li><a href = "javascript:$('#current').html('class')">class</a></li>
+                                    <li><a href = "javascript:void(0);"></a></li>
                                     <li>
                                         <a href = "javascript:" onclick="addAttr();">
                                             <span class="iconfont icon-jiahao"></span>&nbsp;Tag
+                                        </a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href = "javascript:" onclick="addKey();">
+                                            <span class="iconfont icon-jiahao"></span>&nbsp;Key
                                         </a>
                                     </li>
                                     <li role="separator" class="divider"></li>
@@ -466,8 +470,10 @@
 </div>
 
 <input type = "hidden" id = "option" value = "1">
+<!--参数输入选择-->
 <input type = "hidden" id = "selector" value = "0">
 <input type = "hidden" id = "attr-value" value = "">
+<input type = "hidden" id = "key-value" value = "">
 <input type = "hidden" id = "tag-value" value = "">
 <div class="modal fade" id = "Attr" tabindex="-1" role="dialog" aria-labelledby = "model_title">
     <div class="modal-dialog modal-sm" role="document">

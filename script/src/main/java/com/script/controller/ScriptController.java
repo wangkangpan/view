@@ -27,7 +27,8 @@ public class ScriptController {
         Resource resource = new ClassPathResource(
                 "/static/script/mould.py"
         );
-        return new Result<>(Result.Success,"200",interpreter.RunScript(resource.getFile().getPath(), url, tag, key, value));
+        interpreter.RunScript(resource.getFile().getPath(), url, tag, key, value);
+        return new Result<>(Result.Success,"200",null);
 
 
     }

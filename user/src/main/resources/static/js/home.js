@@ -24,9 +24,16 @@ function addTag(){
 
         });
 }
-
-function addAttr(){
+function addKey(){
     $('#selector').val('1');
+    $('#Attr').modal(
+        {
+            keyboard: true
+
+        });
+}
+function addAttr(){
+    $('#selector').val('2');
     $('#Attr').modal(
         {
             keyboard: true
@@ -36,12 +43,17 @@ function addAttr(){
 $('#submit-attr-tag').click(function () {
     if($('#selector').val() == '0')
         $('#attr-value').val($('#attr-tag').val());
+    else if($('#selector').val() == '1')
+        $('#key-value').val($('#attr-tag').val());
     else
         $('#tag-value').val($('#attr-tag').val());
     $('#Attr').modal('hide');
     toastr.success('修改成功');
 });
-
+$('#Attr').on('hide.bs.modal',
+    function() {
+        $('#attr-tag').val('');
+    })
 
 $('#doSearch').click(function () {
     let option = $('#option').val();
@@ -49,7 +61,7 @@ $('#doSearch').click(function () {
     let url = $('#info').val();
     //<tag  key =  "value">html</tag>
     let tag = $('#tag-value').val();
-    let key = $('#key').html();
+    let key = $('#key-value').html();
     let value = $('#attr-value').val();
     switch (option) {
         case '0': return false;
@@ -65,7 +77,6 @@ $('#doSearch').click(function () {
                     value: value
                 }
             ).done(function (data) {
-                alert(JSON.stringify(data))
                 if(data.code === 200){
                     toastr.success('操作成功');
                 }else{
@@ -73,8 +84,7 @@ $('#doSearch').click(function () {
                 }
 
             }).fail(function (data) {
-                alert(JSON.stringify(data.responseText))
-                toastr.error(data.value);
+                toastr.error("请求发送失败");
             });
         //
         // case '2': $.post();

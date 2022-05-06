@@ -1,10 +1,16 @@
 package com.api.util;
 
 
+import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.ss.usermodel.Workbook;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
+@Slf4j
 public class Interpreter {
     //      python解析器的路径
   private static String interpreterPath = "F:\\anaconda\\envs\\project\\python.exe";
@@ -30,32 +36,42 @@ public class Interpreter {
             //          doReader(in).getBytes("ISO-8859-1"), "UTF-8"
             //  );
 //            String error = doReader(in);
-             String result = doReader(in);
-
+             List<String> result = doReader(in);
+            this.packageResult(result);
             in.close();
             isError.close();
             //InterruptedException
             pr.waitFor();
-            return result;
+//            return result;
+            return null;
         }
         catch(IOException e){
-            return "执行程序异常";
+            log.error("IOException:" + e.getMessage());
+            return null;
         }catch (InterruptedException e){
-            return "进程中断异常";
+            log.error("InterruptedException:" + e.getMessage());
+            return null;
         }catch (Exception e){
-            return "未知异常";
+            log.error("Exception:" + e.getMessage());
+            return null;
         }
   }
 
 
   //获取缓冲对象存储的字符串结果
-  private String doReader(BufferedReader br) throws IOException {
-      StringBuilder result = new StringBuilder();
+  private List<String> doReader(BufferedReader br) throws IOException {
+      List<String> result = new ArrayList<>();
       String line;
       while ((line = br.readLine()) != null) {
-          result.append(line);
+          result.add(line);
       }
-      return result.toString();
+      return result;
+  }
+
+  private void packageResult(List<String> params){
+
+//      Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("导出结果","学生"),
+//              StudentEntity .class, list);
   }
 
 
