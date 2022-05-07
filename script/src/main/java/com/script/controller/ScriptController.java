@@ -40,14 +40,14 @@ public class ScriptController {
                 "/static/script/mould.py"
         );
         List<OutData> res = interpreter.RunScript(resource.getFile().getPath(), url, tag, key, value);
-        this.importResult(res,url);
+        this.exportResult(res,url);
         return new Result<>(Result.Success,"200",null);
 
 
     }
 
     //带出Excel文件
-    private void importResult(List<OutData> params,String url){
+    private void exportResult(List<OutData> params,String url){
 
         Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(url,"导出结果"),
                 OutData.class, params);
