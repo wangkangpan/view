@@ -71,75 +71,39 @@
                 <div class = "comment-head row">
                     <div class = "info col-md-2">
                         <div class = "info-name">
-                            <span>胡图图</span>
+                            <span></span>
                         </div>
                     </div>
-                    <div class = "time col-md-2">2022-5-5</div>
-                    <div class = "do-reply col-md-2"><span>回复</span></div>
+                    <div class = "time col-md-2"></div>
+                    <div class = "do-reply col-md-2">
+                        <span onclick="javascript:$('#reply-text').attr('placeholder','回复' + $('.info-name').children('span').html() + ': ')"></span>
+                    </div>
 
                 </div>
                 <div class = "comment-content row">
-                    兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草兔子不吃窝边草，不吃窝边草
                 </div>
                 <div class = "children-comments">
-                    <div  class = "children-comment">
-                        <div class = "reply-content">
-                            <b class = "answer">A</b>回复<b class = "question">B</b><b>:</b> 我撒旦飒飒大苏打萨达萨达萨达倒萨倒萨倒萨撒打撒打撒打撒打撒大多数大苏打撒大大撒旦撒旦撒的撒的撒大苏打撒旦撒旦撒旦撒的撒旦阿松大
-                        </div>
-                        <div class = "row reply-block" >
-                            <div class = "reply-date col-md-2">
-                                2022-5-5
-                            </div>
-                            <div class = "do-reply col-md-2">
-                                <span>回复</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div  class = "children-comment">
-                        <div class = "reply-content">
-                            <b class = "answer">A</b>回复<b class = "question">B</b><b>:</b> 我撒旦飒飒大苏打萨达萨达萨达倒萨倒萨倒萨撒打撒打撒打撒打撒大多数大苏打撒大大撒旦撒旦撒的撒的撒大苏打撒旦撒旦撒旦撒的撒旦阿松大
-                        </div>
-                        <div class = "row reply-block" >
-                            <div class = "reply-date col-md-2">
-                                2022-5-5
-                            </div>
-                            <div class = "do-reply col-md-2">
-                                <span>回复</span>
-                            </div>
-                        </div>
+<!--                    <div  class = "children-comment">-->
+<!--                        <div class = "reply-content">-->
+<!--                            <b class = "answer">B</b>回复<b class = "question">B</b><b>:</b> 我撒旦飒飒大苏打萨达萨达萨达倒萨倒萨倒萨撒打撒打撒打撒打撒大多数大苏打撒大大撒旦撒旦撒的撒的撒大苏打撒旦撒旦撒旦撒的撒旦阿松大-->
+<!--                        </div>-->
+<!--                        <div class = "row reply-block" >-->
+<!--                            <div class = "reply-date col-md-2">-->
+<!--                                2022-5-5-->
+<!--                            </div>-->
+<!--                            <div class = "do-reply col-md-2">-->
+<!--                                <span onclick="changeTextAreaPlaceholder(this)">回复</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-                    </div>
-                    <div class = "children-comment">
-                        <div class = "reply-content">
-                            <b class = "answer">A</b>回复<b class = "question">B</b><b>:</b> 我撒旦飒飒大苏打萨达萨达萨达倒萨倒萨倒萨撒打撒打撒打撒打撒大多数大苏打撒大大撒旦撒旦撒的撒的撒大苏打撒旦撒旦撒旦撒的撒旦阿松大
-                        </div>
-                        <div class = "row reply-block" >
-                            <div class = "reply-date col-md-2">
-                                2022-5-5
-                            </div>
-                            <div class = "do-reply col-md-2">
-                                <span>回复</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class = "children-comment">
-                        <div class = "reply-content">
-                            <b class = "answer">A</b>回复<b class = "question">B</b><b>:</b> 我撒旦飒飒大苏打萨达萨达萨达倒萨倒萨倒萨撒打撒打撒打撒打撒大多数大苏打撒大大撒旦撒旦撒的撒的撒大苏打撒旦撒旦撒旦撒的撒旦阿松大
-                        </div>
-                        <div class = "row reply-block" >
-                            <div class = "reply-date col-md-2">
-                                2022-5-5
-                            </div>
-                            <div class = "do-reply col-md-2">
-                                <span>回复</span>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
 
+                <!--做回复 -->
                 <div class = "reply-box row input-group">
-                    <textarea class = "form-control" style="resize:vertical;min-height: 100px;width: 100%"></textarea>
-                    <span class = "input-group-addon btn btn-primary">回复</span>
+                    <textarea id = "reply-text" class = "form-control" placeholder="" style="resize:vertical;min-height: 100px;width: 100%"></textarea>
+                    <span class = "input-group-addon btn btn-primary" onclick="request">回复</span>
                 </div>
             </div>
 
@@ -148,4 +112,72 @@
     </div>
 </div>
 </body>
+<script src="../jquery/jquery-3.6.0.js" ></script>
+<script src = "../toastr/toastr.min.js"></script>
+<script>
+    const domain = 'http://localhost:8081';
+    $().ready(function (){
+        requestComments()
+        requestReply()
+    })
+    changeTextAreaPlaceholder = (element) =>{
+        $('#reply-text').attr('placeholder',
+            '回复' + $(element).parents('.reply-block').prev().children('.answer').html()
+            + ': '
+        )
+    }
+
+    // userName1是回复者,userName2是原评论的人
+    getReplyHTML = (userName1, userName2, content, createTime ) =>{
+        return "<div class='children-comment'>" +
+            "<div class='reply-content'>" +
+                "<b class='answer'>"
+            + userName1 +
+            "</b>回复<b class='question'>" + userName2 +
+                "</b><b>:</b> " +
+                content
+             + "</div>" +
+            "<div class='row reply-block'>" +
+                "<div class='reply-date col-md-2'>"
+                    + createTime +
+                "</div>" +
+                "<div class='do-reply col-md-2'>" +
+                    "<span onClick='changeTextAreaPlaceholder(this)'>回复</span>" +
+                "</div>" +
+            "</div>" +
+        "</div>"
+    }
+
+    requestComments = () =>{
+        $.post(
+            domain + "/comments/comment"
+        ).done(function (data){
+            $('.comment-head .do-reply span').html("回复")
+            $('.info-name').children('span').html(data.object.userName)
+            $('.time').html(data.object.createTime)
+            $('.comment-content').html(data.object.comments)
+        })
+    }
+
+    requestReply = () =>{
+        $.post(
+            domain + "/comments/replies"
+        ).done(function (data){
+            for(let index in data.object){
+                $('.children-comments').append(
+                    getReplyHTML(
+                        data.object[index].userName,
+                        data.object[index].parentUserName,
+                        data.object[index].comments,
+                        data.object[index].createTime
+                    )
+                )
+            }
+            toastr.info(data.value)
+        }).fail(function (){
+            toastr.info("回复信息查询请求失败")
+        })
+    }
+
+</script>
 </html>
