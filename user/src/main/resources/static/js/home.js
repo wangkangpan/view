@@ -59,7 +59,7 @@ $('#doSearch').click(function () {
     let option = $('#option').val();
 
     let url = $('#info').val();
-    //<tag  key =  "value">html</tag>
+    //<tag key =  "value">html</tag>
     let tag = $('#tag-value').val();
     let key = $('#key-value').html();
     let value = $('#attr-value').val();
@@ -83,7 +83,7 @@ $('#doSearch').click(function () {
                     toastr.error(data.value);
                 }
 
-            }).fail(function (data) {
+            }).fail(function () {
                 toastr.error("请求发送失败");
             });
         //

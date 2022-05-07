@@ -30,6 +30,9 @@ public class ScriptController {
 
     @RequestMapping("/run")
     public Result<String> run(String url, String tag, String key, String value) throws IOException {
+        if(url == null || url == ""){
+            return new Result<>(Result.UnKnownDefault,"请检查输入参数","url:"+url);
+        }
         //自定义脚本解释器
         Interpreter interpreter = new Interpreter();
         //获取静态资源路径
