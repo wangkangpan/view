@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <title>comments</title>
 </head>
-<link rel = "stylesheet" href = "../bootstrap/css/bootstrap.min.css">
-<link rel = "stylesheet" href = "../bootstrap/css/bootstrap-theme.min.css">
-
 <style>
     .info-pic img{
         width: 120px;
@@ -64,19 +61,19 @@
 <div class = "modal-body">
     <div class = "micro-comment">
         <div class = "parent-comment row">
-            <div class = "info-pic col-md-2">
+            <div class = "info-pic col-sm-2">
                 <img class = "img-circle" src="../images/1.jpg" />
             </div>
-            <div class = "col-md-10">
+            <div class = "col-sm-10">
                 <div class = "comment-head row">
-                    <div class = "info col-md-2">
+                    <div class = "info col-sm-2">
                         <div class = "info-name">
                             <span></span>
                         </div>
                     </div>
-                    <div class = "time col-md-2"></div>
-                    <div class = "do-reply col-md-2">
-                        <span onclick="javascript:$('#reply-text').attr('placeholder','回复' + $('.info-name').children('span').html() + ': ')"></span>
+                    <div class = "time col-sm-2"></div>
+                    <div class = "do-reply col-sm-2">
+                        <span onclick="javascript:$('#reply-text').attr('placeholder','回复' + $('.info-name').children('span').html() + ': ');$('#parentId').val('2')"></span>
                     </div>
 
                 </div>
@@ -99,11 +96,11 @@
 
 
                 </div>
-
+                <input id = "parentId" type = "hidden">
                 <!--做回复 -->
                 <div class = "reply-box row input-group">
                     <textarea id = "reply-text" class = "form-control" placeholder="" style="resize:vertical;min-height: 100px;width: 100%"></textarea>
-                    <span class = "input-group-addon btn btn-primary" onclick="request">回复</span>
+                    <span id = "requestDoReply" class = "input-group-addon btn btn-primary" onclick="request">回复</span>
                 </div>
             </div>
 
@@ -112,10 +109,24 @@
     </div>
 </div>
 </body>
-<script src="../jquery/jquery-3.6.0.js" ></script>
-<script src = "../toastr/toastr.min.js"></script>
+<!--<script src="../jquery/jquery-3.6.0.js" ></script>-->
+<!--<script src = "../jquery/jquery.cookie.js"></script>-->
+<!--<script src = "../toastr/toastr.min.js"></script>-->
 <script>
-    const domain = 'http://localhost:8081';
+    toastr.options = { // toastr配置
+        "closeButton": true, //是否显示关闭按钮
+        "debug": false, //是否使用debug模式
+        "progressBar": true, //是否显示进度条，当为false时候不显示；当为true时候，显示进度条，当进度条缩短到0时候，消息通知弹窗消失
+        "positionClass": "toast-top-full-width",
+        "showDuration": "400", //显示的动画时间
+        "hideDuration": "1000", //消失的动画时间
+        "timeOut": "5000", //展现时间
+        "extendedTimeOut": "2000", //加长展示时间
+        "showEasing": "swing", //显示时的动画缓冲方式
+        "hideEasing": "linear", //消失时的动画缓冲方式
+        "showMethod": "fadeIn", //显示时的动画方式
+        "hideMethod": "fadeOut" //消失时的动画方式
+    };
     $().ready(function (){
         requestComments()
         requestReply()
@@ -125,11 +136,30 @@
             '回复' + $(element).parents('.reply-block').prev().children('.answer').html()
             + ': '
         )
+        alert($(element).parents('.children-comment').attr('id'));
+        $('#parentId').val($(element).parents('.children-comment').attr('id'))
     }
+    $('#requestDoReply').click(function () {
+        let userId = '1645422015492'
+        let parentId = $('#parentId').val()
+        $.post(
+            domain + "/addReply",
+            {
+                parentId: parentId,
+                comments: $('#reply-text').val(),
+                userId: userId
+
+            }
+        ).done(function (data) {
+            toastr.info(data.value)
+        }).fail(function (){
+            toastr.info("请求发送失败,请选择回复人")
+        })
+    })
 
     // userName1是回复者,userName2是原评论的人
-    getReplyHTML = (userName1, userName2, content, createTime ) =>{
-        return "<div class='children-comment'>" +
+    getReplyHTML = (id, userName1, userName2, content, createTime ) =>{
+        return "<div id = "+ id +" class='children-comment'>" +
             "<div class='reply-content'>" +
                 "<b class='answer'>"
             + userName1 +
@@ -138,10 +168,10 @@
                 content
              + "</div>" +
             "<div class='row reply-block'>" +
-                "<div class='reply-date col-md-2'>"
+                "<div class='reply-date col-sm-2'>"
                     + createTime +
                 "</div>" +
-                "<div class='do-reply col-md-2'>" +
+                "<div class='do-reply col-sm-2'>" +
                     "<span onClick='changeTextAreaPlaceholder(this)'>回复</span>" +
                 "</div>" +
             "</div>" +
@@ -149,23 +179,33 @@
     }
 
     requestComments = () =>{
+        // alert($.cookie('commentId'))
         $.post(
-            domain + "/comments/comment"
+            domain + "/comment",
+            {
+                id : $.cookie('commentId')
+            }
         ).done(function (data){
             $('.comment-head .do-reply span').html("回复")
             $('.info-name').children('span').html(data.object.userName)
             $('.time').html(data.object.createTime)
             $('.comment-content').html(data.object.comments)
+        }).fail(function () {
+            toastr.error('错误，请检查');
         })
     }
 
     requestReply = () =>{
         $.post(
-            domain + "/comments/replies"
+            domain + "/replies",
+            {
+                id : $.cookie('commentId')
+            }
         ).done(function (data){
             for(let index in data.object){
                 $('.children-comments').append(
                     getReplyHTML(
+                        data.object[index].id,
                         data.object[index].userName,
                         data.object[index].parentUserName,
                         data.object[index].comments,

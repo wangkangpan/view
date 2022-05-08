@@ -5,6 +5,7 @@ let PageNum = 0;
 //当前页
 let currentNum = 1;
 let AnnouncementNum = 1;
+
 toastr.options = { // toastr配置
     "closeButton": true, //是否显示关闭按钮
     "debug": false, //是否使用debug模式
@@ -44,21 +45,26 @@ function getCommentItem(CommentId, CommentTitle, CommentContent, CommentTime){
             "</div>" +
             "<div class = 'description'>" +
             "<p>" + CommentContent + "</p>" +
-            "<a data-toggle='modal' href='Item' data-target='#modal' rel='noopener noreferrer'>THE DETAIL</a>" +
+            "<a data-toggle='modal' href='Item' data-target='#modal' rel='noopener noreferrer' onclick='sotreCommendId(this)'>THE DETAIL</a>" +
             "</div>" +
             "</div>";
     }else{
-        return "<div class = 'item shadow-sharp card col-lg-4'>" +
+        return "<div id = '"+ CommentId +
+            "'class = 'item shadow-sharp card col-lg-4'>" +
             "<div class = 'header'>" +
             "<h2>" + CommentTitle + "</h2>" +
             "</div>" +
             "<div class = 'description'>" +
             "<p>" + CommentContent + "</p>" +
-            "<a data-toggle='modal' href='Item' data-target='#modal' rel='noopener noreferrer'>THE DETAIL</a>" +
+            "<a data-toggle='modal' href='Item' data-target='#modal' rel='noopener noreferrer' onclick='sotreCommendId(this)'>THE DETAIL</a>" +
             "</div>" +
             "</div>";
     }
 
+}
+
+function sotreCommendId(element) {
+    $.cookie("commentId",$(element).parents('.item').attr('id'),1);
 }
 
 function setAnnouncementItemsByJson(element, items){
@@ -156,6 +162,7 @@ function getAnnouncementById(id){
     $.ajaxSettings.async = true;
     return announcement;
 }
+
 
 //设置一个固定格式的模态框
 function setInfoModal(title,content,footer){
@@ -291,4 +298,8 @@ $('#addOneItem').click(function () {
     }
 })
 
+
+$("#modal").on("hidden.bs.modal", function() {
+    $(this).removeData("bs.modal");
+});
 

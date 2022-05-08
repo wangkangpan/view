@@ -11,6 +11,14 @@ public interface CommentsMapper {
 
     List<Comments> selectAllComments(Page page);
 
+    Comments selectCommentsById(Integer id);
+
     Integer selectCountFromComments();
+
+    List<Comments> selectCommentsReplyFromComments(Integer id);
+
+    Integer insertComments(Comments comments);
+
+    Integer insertRelationUserComments(String userId,Integer commentsId);
 
 }
