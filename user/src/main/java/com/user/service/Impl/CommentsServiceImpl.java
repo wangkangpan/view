@@ -40,6 +40,7 @@ public class CommentsServiceImpl implements CommentsService {
 
     @Override
     public Integer addAnnouncement(Announcement announcement) {
+        announcement.setCreateTime(new Date());
         return announcementMapper.insertAnnouncement(announcement);
     }
 

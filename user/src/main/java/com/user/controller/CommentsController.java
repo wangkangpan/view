@@ -39,10 +39,14 @@ public class CommentsController {
     }
     @PostMapping("addAnnouncement")
     public Result<Integer> addAnnouncement(Announcement announcement){
-        return new Result<>(Result.Success,"success",commentsService.addAnnouncement(announcement));
+        return new Result<>(Result.Success,"添加公告成功",commentsService.addAnnouncement(announcement));
     }
 
 //    ==============================================================================
+//    @PostMapping("addComment")
+//    public Result<Integer> addComment(Comment comment){
+//        return new Result<>(Result.Success,"添加公告成功",commentsService.addAnnouncement(announcement));
+//    }
     @PostMapping("/getComments")
     public List<Comments> getComments(Page page){
         return commentsService.getAllComments(page);
@@ -71,6 +75,6 @@ public class CommentsController {
     public Result<?> addReply(Comments comments){
 
         commentsService.addCommentIsReply(comments);
-        return new Result<>(Result.Success, "回复成功",comments);
+        return new Result<>(Result.Success, "添加/回复成功",comments);
     }
 }

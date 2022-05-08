@@ -293,13 +293,42 @@ $('#addOneItem').click(function () {
         $("#modal-input").modal();
     }else if(ActivityLink === "#community"){
         //新增一个comments
+        $("#modal-input-c").modal();
     }else{
         return ;
     }
 })
-$('#submitAnnouncement').click(function () {
-
-})
+addAnnouncement = () =>{
+    $.post(
+        domain + "/addAnnouncement",
+        {
+            title: $('#AnnouncementTitle').val(),
+            content: $('#AnnouncementContent').val()
+        }
+    ).done(function (data) {
+        $('#modal-input').modal('hide')
+        toastr.info(data.value)
+    }).fail(function () {
+        toastr.error("请求错误")
+    })
+}
+addComment = () =>{
+    let userId = '1645422015492'
+    $.post(
+        domain + "/addReply",
+        {
+            userId: userId,
+            title: $('#CommentTitle').val(),
+            comments: $('#CommentContent').val(),
+            parentId: 0
+        }
+    ).done(function (data) {
+        $('#modal-input-c').modal('hide')
+        toastr.info(data.value)
+    }).fail(function () {
+        toastr.error("请求错误")
+    })
+}
 
 
 $("#modal").on("hidden.bs.modal", function() {
