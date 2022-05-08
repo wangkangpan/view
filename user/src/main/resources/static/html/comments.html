@@ -101,7 +101,7 @@
     </div>
 </div>
 <!--公告 输入Modal-->
-<div id="modal-input" class="modal fade">
+<div id="modal-input" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -110,21 +110,24 @@
                 </button>
                 <h4 class="modal-title"></h4>
             </div>
-            <div class="modal-body" style="margin-bottom: 10px;">
-                <div class = "form-group">
-                    <label class="control-label" for = "AnnouncementId">标题:</label>
-                    <input id = "AnnouncementId" class = "form-control col-md-8">
-                </div>
-                <div class = "form-group">
-                    <label class="control-label" for = "content">内容:</label>
-                    <textarea id = "content" class = "form-control col-md-8" style="resize:vertical;min-height: 38px;"></textarea>
-                </div>
+            <div class="modal-body" >
+                <form action="/comments/addAnnouncement">
+                    <div class = "form-group">
+                        <label class="col-form-label" for = "AnnouncementTitle">标题:</label>
+                        <input id = "AnnouncementTitle" class = "form-control">
+                    </div>
+                    <div class = "form-group">
+                        <label class="col-form-label" for = "content">内容:</label>
+                        <textarea id = "content" class = "form-control" style="resize:vertical;"></textarea>
+                    </div>
 
+
+                </form>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Commit</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send</button>
             </div>
         </div>
     </div>

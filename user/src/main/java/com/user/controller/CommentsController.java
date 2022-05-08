@@ -39,8 +39,7 @@ public class CommentsController {
     }
     @PostMapping("addAnnouncement")
     public Result<Integer> addAnnouncement(Announcement announcement){
-        Integer num = commentsService.addAnnouncement(announcement);
-        return new Result<Integer>(Result.Success,"success",num);
+        return new Result<>(Result.Success,"success",commentsService.addAnnouncement(announcement));
     }
 
 //    ==============================================================================

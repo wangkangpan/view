@@ -297,6 +297,9 @@ $('#addOneItem').click(function () {
         return ;
     }
 })
+$('#submitAnnouncement').click(function () {
+
+})
 
 
 $("#modal").on("hidden.bs.modal", function() {
