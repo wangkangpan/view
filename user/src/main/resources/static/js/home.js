@@ -56,36 +56,63 @@ $('#Attr').on('hide.bs.modal',
     })
 
 $('#doSearch').click(function () {
-    let option = $('#option').val();
 
+    let option = $('#option').val();
     let url = $('#info').val();
-    //<tag key =  "value">html</tag>
     let tag = $('#tag-value').val();
-    let key = $('#key-value').html();
+    let key = $('#key-value').val();
     let value = $('#attr-value').val();
     switch (option) {
         case '0': return false;
         case '1':
 
-            $.post(
-                domain + "/script/run",
-                {
+            $.ajax({
+                url:domain + "/script/run",
+                type:"POST",
+                data:{
                     token: token,
                     url: url,
-                    tag:tag,
+                    tag: tag,
                     key: key,
                     value: value
+                },
+                responseType: "blob",
+                success:function (data) {
+                    let blob = new Blob([data], {type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+                    let objectUrl = URL.createObjectURL(blob);
+                    let a = document.createElement("a");
+                    document.body.appendChild(a);
+                    a.style = "display: none";
+                    a.href = objectUrl;
+                    a.download = 'result';
+                    a.click();
+                    document.body.removeChild(a);
                 }
-            ).done(function (data) {
-                if(data.code === 200){
-                    toastr.success('操作成功');
-                }else{
-                    toastr.error(data.value);
-                }
-
-            }).fail(function () {
-                toastr.error("请求发送失败");
-            });
+            })
+            // $.post(
+            //     domain + "/script/run",
+            //     {
+            //         token: token,
+            //         url: url,
+            //         tag: tag,
+            //         key: key,
+            //         value: value
+            //     },
+            //
+            // ).done(function (data) {
+            //     let blob = new Blob([data], {type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+            //     let objectUrl = URL.createObjectURL(blob);
+            //     let a = document.createElement("a");
+            //     document.body.appendChild(a);
+            //     a.style = "display: none";
+            //     a.href = objectUrl;
+            //     a.download = 'result';
+            //     a.click();
+            //     document.body.removeChild(a);
+            //
+            // }).fail(function (data) {
+            //     toastr.error(data.object);
+            // });
         //
         // case '2': $.post();
     }

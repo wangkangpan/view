@@ -10,13 +10,12 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Slf4j
 public class Interpreter {
     //      python解析器的路径
   private static String interpreterPath = "F:\\anaconda\\envs\\project\\python.exe";
 
-  @Autowired
-  private OutData outData;
 
   public List<OutData> RunScript(String path, String url, String tag, String key, String value) {
 
@@ -63,6 +62,7 @@ public class Interpreter {
   //获取缓冲对象存储的字符串结果
   private List<OutData> doReader(BufferedReader br, String tag, String key, String attr){
       List<OutData> result = new ArrayList<>();
+      OutData outData = new OutData();
       String line;
       try{
           while ((line = br.readLine()) != null) {

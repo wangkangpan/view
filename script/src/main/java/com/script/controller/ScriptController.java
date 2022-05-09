@@ -9,13 +9,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-import javax.naming.spi.DirStateFactory;
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.List;
 
 /*
@@ -29,10 +31,8 @@ import java.util.List;
 public class ScriptController {
 
     @RequestMapping("/run")
-    public Result<String> run(String url, String tag, String key, String value) throws IOException {
-        if(url == null || url == ""){
-            return new Result<>(Result.UnKnownDefault,"请检查输入参数","url:"+url);
-        }
+    public void run(String url, String tag, String key, String value,HttpServletResponse response) throws IOException {
+
         //自定义脚本解释器
         Interpreter interpreter = new Interpreter();
         //获取静态资源路径
@@ -40,8 +40,23 @@ public class ScriptController {
                 "/static/script/mould.py"
         );
         List<OutData> res = interpreter.RunScript(resource.getFile().getPath(), url, tag, key, value);
-        this.exportResult(res,url);
-        return new Result<>(Result.Success,"200",null);
+
+        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(),
+                OutData.class, res);
+        response.setCharacterEncoding("UTF-8");
+
+        response.setHeader("content-disposition", "attachment;filename=" + URLEncoder.encode("result.xls","UTF-8"));
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+
+        OutputStream out = response.getOutputStream();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        response.setHeader("Content-Length", String.valueOf(baos.size()));
+
+        workbook.write(baos);
+        out.write( baos.toByteArray() );
+        out.flush();
+        out.close();
+        workbook.close();
 
 
     }

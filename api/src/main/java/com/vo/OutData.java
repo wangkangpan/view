@@ -11,7 +11,6 @@ import java.io.Serializable;
 @Component
 @ExcelTarget("OutData")
 public class OutData implements Serializable {
-
     @Excel(name = "标签",width = 10)
     private String tag;
     @Excel(name = "属性名",width = 10)
