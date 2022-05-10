@@ -19,7 +19,7 @@ def selectContentByid(url, tag, key, value):
         driver.get(url)
 
         text = WebDriverWait(driver, 10, 0.5).until(
-            EC.presence_of_element_located((By.XPATH, '//*[@' + key + ' = "' + value + '"]'))
+            EC.presence_of_all_elements_located((By.XPATH, '//' + tag + '[@' + key + ' = "' + value + '"]'))
         )
 
         return text.text if (text.get_attribute('value') is None or text.get_attribute('value') == '') \
