@@ -41,21 +41,21 @@ public class ScriptController {
             log.error("url参数信息为空");
             return;
         }
-        //自定义脚本解释器
-//        Interpreter interpreter = new Interpreter();
-//        //获取静态资源路径
-//        Resource resource = new ClassPathResource(
-//                "/static/script/mould.py"
-//        );
-//        List<OutData> res = interpreter.RunScript(resource.getFile().getPath(), url, tag, key, value);
+//        自定义脚本解释器
+        Interpreter interpreter = new Interpreter();
+        //获取静态资源路径
+        Resource resource = new ClassPathResource(
+                "/static/script/mould.py"
+        );
+        List<OutData> res = interpreter.RunScript(resource.getFile().getPath(), url, tag, key, value);
 
-        OutData outData = new OutData();
-        outData.setTag("span");
-        outData.setAttr("class");
-        outData.setKey("tag");
-        outData.setContent("这是一个测试");
-        List<OutData> res = new ArrayList<>(4);
-        res.add(outData);
+//        OutData outData = new OutData();
+//        outData.setTag("span");
+//        outData.setAttr("class");
+//        outData.setKey("tag");
+//        outData.setContent("这是一个测试");
+//        List<OutData> res = new ArrayList<>(4);
+//        res.add(outData);
         Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(),
                 OutData.class, res);
 

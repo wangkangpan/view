@@ -62,10 +62,10 @@ public class Interpreter {
   //获取缓冲对象存储的字符串结果
   private List<OutData> doReader(BufferedReader br, String tag, String key, String attr){
       List<OutData> result = new ArrayList<>();
-      OutData outData = new OutData();
       String line;
       try{
           while ((line = br.readLine()) != null) {
+              OutData outData = new OutData();
               outData.setContent(line);
               outData.setTag(tag);
               outData.setKey(key);

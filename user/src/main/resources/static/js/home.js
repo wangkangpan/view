@@ -65,6 +65,9 @@ $('#doSearch').click(function () {
     switch (option) {
         case '0': return false;
         case '1':
+            // 处理url中的 ? / &
+            url = escape(url);
+            // https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=hello%20world&fenlei=256&rsv_pq=bc030db80006a5bc&rsv_t=b111bEnSM%2Bra6u29%2BsNTpyHFq5njFBeq6ibjHgWPICpdZLOn4hJNEAAqFGA&rqlang=cn&rsv_enter=1&rsv_dl=tb&rsv_sug3=15&rsv_sug1=14&rsv_sug7=101&rsv_sug2=0&rsv_btype=i&inputT=3665&rsv_sug4=784588
             window.location.href = domain + "/script/run" + "?" +
                 "url=" + url + "&" + "tag=" + tag + "&" +
                 "&" + "key=" + key + "&" + "value=" + value;

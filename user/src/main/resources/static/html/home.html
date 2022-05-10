@@ -17,19 +17,19 @@
 </head>
 <body>
 <div class = "wrapper">
-    <div class = "menu container">
-        <div class = "menu-inner row">
-            <nav class="navbar navbar-default navbar-fixed-top menu-nav">
+<!--    <div class = "menu container">-->
+<!--        <div class = "menu-inner row">-->
+<!--            <nav class="navbar navbar-default navbar-fixed-top menu-nav">-->
 
-                <ul class="nav nav-pills">
-                    <li role="presentation" class="active"><a href="#">Home</a></li>
-                    <li role="presentation"><a href="#">Profile</a></li>
-                    <li role="presentation"><a href="#">Messages</a></li>
-                </ul>
+<!--                <ul class="nav nav-pills">-->
+<!--                    <li role="presentation" class="active"><a href="#">Home</a></li>-->
+<!--                    <li role="presentation"><a href="#">Profile</a></li>-->
+<!--                    <li role="presentation"><a href="#">Messages</a></li>-->
+<!--                </ul>-->
 
-            </nav>
-        </div>
-    </div>
+<!--            </nav>-->
+<!--        </div>-->
+<!--    </div>-->
 
     <div class = "container">
         <div class = "row row-inner">
@@ -97,18 +97,18 @@
             <div class = "micro-box">
                 <div class = "micro-box-icon">
 
-                    <button type="button" class="btn btn-danger btn-circle btn-xl">
+                    <button type="button" class="btn btn-danger btn-circle btn-xl" onclick="javascript:$(this).next().children('a').click()">
                         <span class="iconfont icon-download" style = "font-size: 60px;position: absolute;top:0;bottom: 0;left: 0;right: 0;"></span>
                     </button>
 
-                    <span><a>下载源码</a></span>
+                    <span><a href = "/download/script">下载源码</a></span>
                 </div>
                 <div class = "micro-box-content">将代码下载，您可以选择更新代码针对性的为您的团队服务，然后再部署至您团队的私人服务器。</div>
             </div>
 
             <div class = "micro-box">
                 <div class = "micro-box-icon">
-                    <button type="button" class="btn btn-danger btn-circle btn-xl">
+                    <button type="button" class="btn btn-danger btn-circle btn-xl" onclick="javascript:$(this).next().children('a').click()">
                         <span class="iconfont icon-more" style = "font-size: 60px;position: absolute;top:0;bottom: 0;left: 0;right: 0;"></span>
                     </button>
                     <span><a>多源数据</a></span>
@@ -119,7 +119,7 @@
 
             <div class = "micro-box">
                 <div class = "micro-box-icon">
-                    <button type="button" class="btn btn-danger btn-circle btn-xl">
+                    <button type="button" class="btn btn-danger btn-circle btn-xl" onclick="javascript:$(this).next().children('a').click()">
                         <span class="iconfont icon-single" style = "font-size: 60px;position: absolute;top:0;bottom: 0;left: 0;right: 0;"></span>
                     </button>
                     <span><a>单源数据</a></span>
@@ -437,10 +437,10 @@
         <div class = "col-sm-12 col-md-6 col-lg-4"  style = "margin-top: 20px;">
             <div class = "micro-box">
                 <div class = "micro-box-icon">
-                    <button type="button" class="btn btn-danger btn-circle btn-xl">
+                    <button type="button" class="btn btn-danger btn-circle btn-xl" onclick="javascript:$(this).next().children('a').click()">
                         <span class="iconfont icon-github-fill" style = "font-size: 60px;position: absolute;top:0;bottom: 0;left: 0;right: 0;"></span>
                     </button>
-                    <span><a>Git地址</a></span>
+                    <span><a href = "https://gitee.com/ipursuit/view">Git地址</a></span>
                 </div>
 
                 <div class = "micro-box-content">git开源项目地址,提供新的创意到项目,clone项目到本地。</div>
@@ -448,7 +448,7 @@
 
             <div class = "micro-box">
                 <div class = "micro-box-icon">
-                    <button type="button" class="btn btn-danger btn-circle btn-xl">
+                    <button type="button" class="btn btn-danger btn-circle btn-xl" onclick="javascript:$(this).next().children('a').click()">
                         <span class="iconfont icon-comments" style = "font-size: 60px;position: absolute;top:0;bottom: 0;left: 0;right: 0;"></span>
                     </button>
                     <span><a href = "/comments">评论区</a></span>
@@ -459,7 +459,7 @@
 
             <div class = "micro-box">
                 <div class = "micro-box-icon">
-                    <button type="button" class="btn btn-danger btn-circle btn-xl">
+                    <button type="button" class="btn btn-danger btn-circle btn-xl" onclick="javascript:$(this).next().children('a').click()">
                         <span class="iconfont icon-feedback-f" style = "font-size: 60px;position: absolute;top:0;bottom: 0;left: 0;right: 0;"></span>
                     </button>
                     <span><a>反馈</a></span>

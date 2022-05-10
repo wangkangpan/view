@@ -64,3 +64,6 @@ pagehelper:
   support-methods-arguments: true
   #parms 参数属性别名
 
+download:
+  script:
+    address: D:\project\view\script\src\main\resources\download\script.zip

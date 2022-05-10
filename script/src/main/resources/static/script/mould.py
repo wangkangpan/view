@@ -5,6 +5,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
+
+import sys
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+
 def selectContentByid(url, tag, key, value):
     try:
 
@@ -21,9 +29,10 @@ def selectContentByid(url, tag, key, value):
         text = WebDriverWait(driver, 10, 0.5).until(
             EC.presence_of_all_elements_located((By.XPATH, '//' + tag + '[@' + key + ' = "' + value + '"]'))
         )
-
-        return text.text if (text.get_attribute('value') is None or text.get_attribute('value') == '') \
-            else text.get_attribute('value')
+        for i in text:
+            print(i.text)
+        # return text.text if (text.get_attribute('value') is None or text.get_attribute('value') == '') \
+        #     else text.get_attribute('value')
 
     except Exception as e:
         print(str(e))
@@ -36,6 +45,8 @@ if __name__ == '__main__':
     for i in range(1, len(sys.argv)):
         args.append(sys.argv[i])
     # args.append('https://www.baidu.com/')
-    # args.append('id')
-    # args.append('su')
-    print(selectContentByid(args[0], args[1], args[2], args[3]), end="")
+    # args.append('span')
+    # args.append('clas')
+    # args.append('title-content-title')
+    selectContentByid(args[0], args[1], args[2], args[3])
+
