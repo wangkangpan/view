@@ -74,3 +74,8 @@ $('#doSearch').click(function () {
     }
 });
 
+feedback = () =>{
+    $.post(
+        domain + "//feedback"
+    )
+}
