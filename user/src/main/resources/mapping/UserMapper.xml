@@ -8,6 +8,11 @@
         limit 1
     </select>
 
+    <select id="selectUserByid" parameterType="String" resultType="com.user.entity.User">
+        select * from user where id = #{id}
+        limit 1
+    </select>
+
      <insert id="insertUser" parameterType="com.user.entity.User">
         insert into user values(
             #{user.id}
@@ -29,7 +34,7 @@
             #{telephone},
             #{createTime}
         )
-    </insert> 
+    </insert>
 
 
 

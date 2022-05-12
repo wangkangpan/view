@@ -7,7 +7,7 @@ public interface UserService {
 
     boolean checkPasswordByUserName(String userName, String password);
 
-
+    String getRelationshipById(String id);
 
     Integer injectRegister(User user);
 
