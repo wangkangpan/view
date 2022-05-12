@@ -38,7 +38,7 @@ public class ScriptController {
     public void run(String url, String tag, String key, String value,HttpServletResponse response) throws IOException {
 
         if(url == null || url == "") {
-            log.error("url参数信息为空");
+            log.info("url参数信息为空");
             return;
         }
 //        自定义脚本解释器
@@ -73,7 +73,8 @@ public class ScriptController {
 
     }
 
-    //带出Excel文件
+
+        //带出Excel文件
     private void exportResult(List<OutData> params,String url){
 
         Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(url,"导出结果"),

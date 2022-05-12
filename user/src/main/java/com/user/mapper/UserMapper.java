@@ -8,6 +8,7 @@ public interface UserMapper {
 
     User selectUserByUserName(String userName);
 
+    User selectUserByid(String id);
     //信息完全插入一个User
     Integer insertUser(User user);
 

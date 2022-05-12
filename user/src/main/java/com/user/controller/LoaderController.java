@@ -46,7 +46,7 @@ public class LoaderController {
     public Result verifyPassword(String userName, String password){
 
         if(userService.checkPasswordByUserName(userName, password)){
-            return new Result(Result.Success, new JwtUtils().sign(userName),null);
+            return new Result(Result.Success, JwtUtils.sign(userName),null);
         }
         return new Result(Result.DataBaseDefault, "账号或密码错误",null);
 
@@ -58,7 +58,7 @@ public class LoaderController {
             //禁止频繁访问
             String ip = request.getRemoteAddr();
             if(!patternUtil.isEmail(email) || redisTemplate.hasKey(ip))
-                return new Result(Result.VerifyEmailMessageDefault, "发送失败",null);
+                return new Result(Result.VerifyEmailMessageDefault, "邮箱校验错误或者您发送频繁",null);
 
 
             ValueOperations valueOperations = redisTemplate.opsForValue();

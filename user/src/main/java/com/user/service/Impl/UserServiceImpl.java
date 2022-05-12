@@ -42,6 +42,11 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public String getRelationshipById(String id) {
+        return userMapper.selectUserByid(id).getTelephone();
+    }
+
 
     @Override
     public Integer injectRegister(User user) {
