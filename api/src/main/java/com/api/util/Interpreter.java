@@ -3,6 +3,7 @@ package com.api.util;
 import com.vo.OutData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,7 +16,6 @@ import java.util.List;
 public class Interpreter {
     //      python解析器的路径
   private static String interpreterPath = "F:\\anaconda\\envs\\project\\python.exe";
-
 
   public List<OutData> RunScript(String path, String url, String tag, String key, String value) {
 
@@ -56,6 +56,63 @@ public class Interpreter {
             log.error("Exception:" + e.getMessage());
             return null;
         }
+  }
+
+  @Async
+  public List<OutData> MultiRunScript(String path, String url, String tag, String key, String attr) {
+      List<OutData> result = new ArrayList<>();
+      try {
+          String[] args = new String[]{"python", path, url, tag, key, attr};
+          Process pr = Runtime.getRuntime().exec(args);
+
+          //用输入输出流来截取结果
+          //InputStreamReader类是从字节流到字符流的桥接器：
+          //它使用指定的字符集读取字节并将它们解 码为字符
+          //BufferedReader 中只有用GBK和GB2312才能解决乱码
+          InputStreamReader in = new InputStreamReader(pr.getInputStream(), "GBK");
+
+
+          while(in.ready()){
+              char tmp;
+              String line = "";
+              while((tmp = (char)(in.read())) != '\n'){
+                  line =
+              }
+              OutData outData = new OutData();
+              outData.setContent(line);
+              outData.setTag(tag);
+              outData.setKey(key);
+              outData.setAttr(attr);
+              result.add(outData);
+              //转成char并添加到StringBuffer对象中
+              OutData outData = new OutData();
+
+          }
+          //接受错误流
+          InputStreamReader isError = new InputStreamReader(pr.getErrorStream(),"GBK");
+          //  String result = new String(
+          //          doReader(in).getBytes("ISO-8859-1"), "UTF-8"
+          //  );
+//            String error = doReader(in);
+          List<OutData> result = doReader(in, tag, key, value);
+
+          in.close();
+          isError.close();
+          //InterruptedException
+          pr.waitFor();
+          return result;
+
+      }
+      catch(IOException e){
+          log.error("IOException:" + e.getMessage());
+          return null;
+      }catch (InterruptedException e){
+          log.error("InterruptedException:" + e.getMessage());
+          return null;
+      }catch (Exception e){
+          log.error("Exception:" + e.getMessage());
+          return null;
+      }
   }
 
 
