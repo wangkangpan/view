@@ -5,6 +5,7 @@ import com.user.util.PatternUtil;
 import com.user.mapper.UserMapper;
 import com.user.entity.User;
 import com.user.service.UserService;
+import com.vo.Result;
 import lombok.RequiredArgsConstructor;
 
 
@@ -35,10 +36,11 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectUserByUserName(userName);
     }
 
-    public boolean checkPasswordByUserName(String userName, String password){
+    public Result<?> checkPasswordByUserName(String userName, String password){
         User user = this.getUserByUserName(userName);
 
-        return user.getPassword().equals(password);
+//        return user.getPassword().equals(password);
+        return new Result<>(Result.Success,"登陆成功",user);
 
     }
 

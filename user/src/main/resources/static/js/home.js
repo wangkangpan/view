@@ -1,5 +1,6 @@
 //域名
 const domain = 'http://localhost:8082';
+const domain2 = 'http://localhost:8081';
 toastr.options = { // toastr配置
     "closeButton": true, //是否显示关闭按钮
     "debug": false, //是否使用debug模式
@@ -75,7 +76,18 @@ $('#doSearch').click(function () {
 });
 
 feedback = () =>{
+    let subject = $("#f-title").val();
+    let content = $("#f-content").val();
     $.post(
-        domain + "//feedback"
-    )
+        domain2 + "/user/feedback",
+        {
+            token: token,
+            subject: subject,
+            content: content
+        }
+    ).done(function (data) {
+        toastr.info(data.value);
+    }).fail(function () {
+        toastr.error("反馈请求失败！")
+    })
 }

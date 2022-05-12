@@ -30,7 +30,7 @@ public class JwtUtils {
      * @param **password**
      * @return
      */
-    public static String sign(String userName) {
+    public static String sign(String userName, String id) {
         try {
             // 设置过期时间
             Date date = new Date(System.currentTimeMillis() + EXPIRE_TIME);
@@ -44,6 +44,7 @@ public class JwtUtils {
             return JWT.create()
                     .withHeader(header)//1、头部
                     .withClaim("userName", userName)//2、payload负载
+                    .withClaim("id",id)
                     .withExpiresAt(date)//指定过期时间
                     .sign(algorithm);//3、签名
         } catch (Exception e) {

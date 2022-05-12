@@ -26,7 +26,7 @@ public class LoadInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest servletRequest, HttpServletResponse response, Object handler) {
         //统一拦截
 //        String token = servletRequest.getParameter("token");
-        String token = JwtUtils.sign("die");
+        String token = JwtUtils.sign("die","2");
         Object username = JwtUtils.verify(token);
         if(username != null){
             return true;

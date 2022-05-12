@@ -45,8 +45,11 @@ public class LoaderController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Result verifyPassword(String userName, String password){
 
-        if(userService.checkPasswordByUserName(userName, password)){
-            return new Result(Result.Success, JwtUtils.sign(userName),null);
+        Result<?> res = userService.checkPasswordByUserName(userName, password);
+        User user = (User)(res.getObject());
+        if(res.getCode() == Result.Success){
+
+            return new Result(Result.Success, JwtUtils.sign(userName, user.getId()),null);
         }
         return new Result(Result.DataBaseDefault, "账号或密码错误",null);
 

@@ -2,10 +2,12 @@ package com.user.service;
 
 
 import com.user.entity.User;
+import com.vo.Result;
 
 public interface UserService {
 
-    boolean checkPasswordByUserName(String userName, String password);
+    Result<?> checkPasswordByUserName(String userName, String password);
+
 
     String getRelationshipById(String id);
 
