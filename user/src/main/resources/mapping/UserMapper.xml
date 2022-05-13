@@ -36,7 +36,20 @@
         )
     </insert>
 
+    <update id="updateUser">
+        update user
+        set userName = #{userName},
+            password = #{password},
+            email = #{email},
+            telephone = #{telephone},
+            createTime = #{createTime}
+        where id = #{id}
+    </update>
 
+    <delete id="deleteUser">
+        delete from user
+        where id = #{id}
+    </delete>
 
 
 </mapper>

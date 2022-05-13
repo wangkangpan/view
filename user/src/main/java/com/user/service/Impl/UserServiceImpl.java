@@ -45,6 +45,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUser(String id) {
+        return userMapper.selectUserByid(id);
+    }
+
+    @Override
+    public Integer setUser(User user) {
+        return null;
+    }
+
+    @Override
     public String getRelationshipById(String id) {
         return userMapper.selectUserByid(id).getTelephone();
     }
@@ -62,6 +72,10 @@ public class UserServiceImpl implements UserService {
         return userMapper.insertUserIDAndCertificate(user);
     }
 
+    @Override
+    public Integer removeUser(String id) {
+        return userMapper.deleteUser(id);
+    }
 
 
     private boolean legalRegister(User user){

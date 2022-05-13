@@ -22,6 +22,11 @@ public class ViewController {
         return "html/comments";
     }
 
+    @RequestMapping("/user/person")
+    public String toPerson(){
+        return "html/person.html";
+    }
+
     @RequestMapping("/Item")
     public String toItem(){
         return "html/Item";

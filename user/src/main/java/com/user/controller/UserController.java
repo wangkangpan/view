@@ -1,6 +1,7 @@
 package com.user.controller;
 
 import com.api.util.JwtUtils;
+import com.user.entity.User;
 import com.user.entity.po.Feedback;
 import com.user.service.SendMailService;
 import com.user.service.UserService;
@@ -50,4 +51,42 @@ public class UserController {
         return new Result<>(Result.Success,"反馈开发者成功",null);
     }
 
+    @PostMapping("/select")
+    public Result<?> select(String token){
+        String id = JwtUtils.getClaim(token,"id");
+        if(id == null || id.equals("")){
+            return new Result<>(Result.UnKnownDefault, "非法用户", null);
+        }
+
+        User user = userService.getUser(id);
+        if(user != null){
+            return new Result<>(Result.Success, "查询用户信息成功", user);
+        }else{
+            return new Result<>(Result.UnKnownDefault, "查询用户信息失败", null);
+        }
+    }
+
+
+    @PostMapping("/update")
+    public Result<?> update(String token, User user){
+        String id = JwtUtils.getClaim(token,"id");
+        if(id == null || id.equals("") || !(new PatternUtil().isEmail(user.getEmail()))){
+            return new Result<>(Result.UnKnownDefault, "请求修改非法", null);
+        }
+        userService.setUser(user);
+        return new Result<>(Result.Success,"修改用户信息成功", userService.getUser(id));
+
+    }
+
+    @PostMapping("/delete")
+    public Result<?> delete(String token){
+        String id = JwtUtils.getClaim(token,"id");
+        if(id == null || id.equals("")){
+            return new Result<>(Result.UnKnownDefault, "非法用户", null);
+        }
+        User user = userService.getUser(id);
+        userService.removeUser(id);
+        return new Result<>(Result.Success,"删除用户信息成功", user);
+
+    }
 }
