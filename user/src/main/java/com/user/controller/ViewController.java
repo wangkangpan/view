@@ -24,7 +24,7 @@ public class ViewController {
 
     @RequestMapping("/user/person")
     public String toPerson(){
-        return "html/person.html";
+        return "html/person";
     }
 
     @RequestMapping("/Item")

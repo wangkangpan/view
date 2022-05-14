@@ -70,8 +70,8 @@ public class UserController {
     @PostMapping("/update")
     public Result<?> update(String token, User user){
         String id = JwtUtils.getClaim(token,"id");
-        if(id == null || id.equals("") || !(new PatternUtil().isEmail(user.getEmail()))){
-            return new Result<>(Result.UnKnownDefault, "请求修改非法", null);
+        if(id == null || id.equals("") || !(patternUtil.isEmail(user.getEmail()))){
+            return new Result<>(Result.UnKnownDefault, "请求修改非法", userService.getUser(id));
         }
         userService.setUser(user);
         return new Result<>(Result.Success,"修改用户信息成功", userService.getUser(id));
