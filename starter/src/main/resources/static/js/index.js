@@ -88,8 +88,8 @@ $('#login-form').submit(function (e) {
 
             }
 
-    }).fail(function (res) {
-       toastr.error("服务器内部错误-certificate:" + res.value);
+    }).fail(function (data) {
+       toastr.error(data.value);
     });
     e.preventDefault();
 });

@@ -47,12 +47,11 @@ public class LoaderController {
     public Result<?> verifyPassword(String userName, String password){
 
         Result<?> res = userService.checkPasswordByUserName(userName, password);
-        User user = (User)(res.getObject());
         if(res.getCode() == Result.Success){
-
+            User user = (User)(res.getObject());
             return new Result<>(Result.Success, "登陆成功",JwtUtils.sign(userName, user.getId()));
         }
-        return new Result<>(Result.DataBaseDefault, "账号或密码错误",null);
+        return new Result<>(Result.DataBaseDefault, res.getValue(),null);
 
     }
 
@@ -84,10 +83,11 @@ public class LoaderController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public Result addUser(User user){
 
-        if(userService.injectRegister(user) < 1) {
+        if(user == null || user.getEmail() == null || patternUtil.isEmail(user.getEmail()) || userService.injectRegister(user) < 1) {
             return new Result(Result.DataBaseDefault, "注册失败",null);
 
         }else {
+            redisTemplate.delete(user.getEmail());
             return new Result(Result.Success, "注册成功",null);
 
         }

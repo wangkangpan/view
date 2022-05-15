@@ -82,6 +82,12 @@ public class ScriptController {
         return;
     }
 
+    @GetMapping("/error")
+    public void error(){
+        int zero = 1 / 0;
+        log.info(String.valueOf(zero));
+    }
+
     private void export(HttpServletResponse response, List<OutData> res) throws IOException {
         Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(),
                 OutData.class, res);

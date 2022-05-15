@@ -37,7 +37,15 @@ public class UserServiceImpl implements UserService {
     }
 
     public Result<?> checkPasswordByUserName(String userName, String password){
+        if(userName == null || password == null || userName == "" || password == ""){
+            return new Result<>(Result.UnLoad,"账号或者密码为空",null);
+
+        }
         User user = this.getUserByUserName(userName);
+
+        if(user == null || !password.equals(user.getPassword())){
+            return new Result<>(Result.UnLoad,"账号或者密码错误",null);
+        }
 
 //        return user.getPassword().equals(password);
         return new Result<>(Result.Success,"登陆成功",user);
