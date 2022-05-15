@@ -19,8 +19,7 @@ toastr.options = { // toastr配置
 //页面的数量
 let PageNum = 0;
 //当前页
-let currentNum = 1;
-let AnnouncementNum = 1;
+// let currentNum = 1;
 
 // toastr.options = { // toastr配置
 //     "closeButton": true, //是否显示关闭按钮
@@ -52,8 +51,8 @@ function getAnnouncementItem(announcementId, announcementTitle, announcementCont
         "<div class='ge'></div>" +
         "</div>";
 }
-function getCommentItem(CommentId, CommentTitle, CommentContent, CommentTime){
-    if(CommentId % 2 == 0){
+function getCommentItem(index, CommentId, CommentTitle, CommentContent, CommentTime){
+    if(index % 2 != 0){
         return "<div id = '"+CommentId +
             "' class = 'item shadow-sharp card col-lg-4 col-lg-offset-2'>" +
             "<div class = 'header'>" +
@@ -98,7 +97,7 @@ function setCommentItemsByJson(element, items){
         return;
     for(let index in items){
 
-        element.append(getCommentItem(items[index].id, items[index].title,
+        element.append(getCommentItem(index,items[index].id, items[index].title,
             items[index].comments,
             items[index].createTime));
     }
@@ -119,7 +118,7 @@ function requestAnnouncements(element,pageNo,pageSize){
     });
 }
 
-function requestComments(element,pageNo,pageSize){
+function requestZeroComments(element,pageNo,pageSize){
     $.post(
         user + "/comments/getComments",
         {
@@ -244,7 +243,7 @@ function loadDIV(element,option){
                 }
             },
             onPageClicked: function (event,originalEvent,type,page) {
-                currentNum = page;
+                // currentNum = page;
                 $(".item").remove();
                 requestAnnouncements(element, page,pageSize);
             }
@@ -255,7 +254,7 @@ function loadDIV(element,option){
             toastr.error("分页异常");
             return;
         }
-        requestComments(element,1,pageSize)
+        requestZeroComments(element,1,pageSize)
         $('#pageLimit-comments').bootstrapPaginator({
             currentPage: 1,
             totalPages: PageNum,
@@ -274,9 +273,8 @@ function loadDIV(element,option){
                 }
             },
             onPageClicked: function (event,originalEvent,type,page) {
-                AnnouncementNum = page;
                 $(".item").remove();
-                requestComments(element, page,pageSize);
+                requestZeroComments(element, page,pageSize);
             }
         });
     }else{

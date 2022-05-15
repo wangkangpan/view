@@ -24,6 +24,7 @@
 
     <select id="selectCountFromComments" resultType="Integer">
         select count(1) from comments
+        where parentId = 0
     </select>
 
     <select id="selectCommentsReplyFromComments" resultType="com.user.entity.po.Comments">
