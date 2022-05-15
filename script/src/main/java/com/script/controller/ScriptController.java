@@ -5,9 +5,11 @@ import cn.afterturn.easypoi.excel.entity.ExportParams;
 import com.api.util.Interpreter;
 import com.vo.OutData;
 import com.vo.Result;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
@@ -34,6 +36,10 @@ import java.util.List;
 @RequestMapping("/script")
 public class ScriptController {
 
+    Resource resource = new ClassPathResource(
+            "/static/script/mould.py"
+    );
+
     @GetMapping("/run")
     public void run(String url, String tag, String key, String value,HttpServletResponse response) throws IOException {
 
@@ -44,9 +50,7 @@ public class ScriptController {
 //        自定义脚本解释器
         Interpreter interpreter = new Interpreter();
         //获取静态资源路径
-        Resource resource = new ClassPathResource(
-                "/static/script/mould.py"
-        );
+
         List<OutData> res = interpreter.RunScript(resource.getFile().getPath(), url, tag, key, value);
 
 //        OutData outData = new OutData();
@@ -56,6 +60,29 @@ public class ScriptController {
 //        outData.setContent("这是一个测试");
 //        List<OutData> res = new ArrayList<>(4);
 //        res.add(outData);
+        export(response, res);
+
+
+    }
+
+    @GetMapping("/multi")
+    public void multiRun(String url, String tag, String key, String value,HttpServletResponse response) throws IOException {
+        String[] url_set = url.split(";");
+        if(url_set.length > 5){
+            return;
+        }
+        List<OutData> res = new ArrayList<>();
+        Interpreter interpreter = new Interpreter();
+
+        for(String url_single : url_set){
+            res.addAll(interpreter.RunScript(resource.getFile().getPath(), url_single, tag, key, value));
+        }
+
+        export(response, res);
+        return;
+    }
+
+    private void export(HttpServletResponse response, List<OutData> res) throws IOException {
         Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(),
                 OutData.class, res);
 
@@ -69,27 +96,8 @@ public class ScriptController {
         out.flush();
         out.close();
         workbook.close();
-
-
     }
 
 
-        //带出Excel文件
-    private void exportResult(List<OutData> params,String url){
 
-        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(url,"导出结果"),
-                OutData.class, params);
-        try{
-            FileOutputStream fileOutputStream = new FileOutputStream("result.xls");
-            //导出完成
-            workbook.write(fileOutputStream);
-            fileOutputStream.close();
-            workbook.close();
-
-        }catch(IOException e){
-            log.error("IOException:" + e.getMessage());
-        }catch (Exception e){
-            log.error("Exception:" + e.getMessage());
-        }
-    }
 }

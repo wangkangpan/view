@@ -10,6 +10,7 @@
         left join relation_user_comments on relation_user_comments.id = comments.id
         left join user on relation_user_comments.userId = user.id
         where parentId = 0
+        order by comments.createTime desc
         limit #{pageStart}, #{pageEnd}
     </select>
 
@@ -31,6 +32,7 @@
         left join relation_user_comments on relation_user_comments.commentsId = comments.id
         left join user on relation_user_comments.userId = user.userId
         where comments.parentId = #{id}
+        order by comments.createTime desc
     </select>
     <insert id="insertComments" useGeneratedKeys="true" keyProperty="id" parameterType="com.user.entity.po.Comments">
         insert into comments(title,comments,createTime,parentId)

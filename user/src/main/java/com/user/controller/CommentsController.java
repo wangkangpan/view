@@ -9,12 +9,10 @@ import com.vo.Result;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-@CrossOrigin
 @RequiredArgsConstructor
+@CrossOrigin
 @RestController
 @RequestMapping("comments")
 public class CommentsController {

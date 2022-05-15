@@ -5,16 +5,7 @@ server:
   #项目名，如果不设定，默认是 /
   context-path: /
 
-# MVC 视图配置、静态资源位置
-spring:
-  mvc:
-    view:
-      prefix: /
-      suffix: .html
-    static-path-pattern: /**
-    resources:
-      static-locations: classpath:/static/
-
+spring: 
 #mysql 数据库
   datasource:
     druid:
@@ -52,7 +43,8 @@ mybatis:
 #正则
 regex:
   email: '^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$'
-
+  url:
+    separtor: ';'
 
 redis:
   ip: '127.0.1'

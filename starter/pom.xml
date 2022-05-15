@@ -11,21 +11,23 @@
 
     <artifactId>starter</artifactId>
     <dependencies>
-        <dependency>
-            <groupId>com.collection</groupId>
-            <artifactId>api</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.collection</groupId>
-            <artifactId>script</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.collection</groupId>
-            <artifactId>user</artifactId>
-            <version>1.0.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.collection</groupId>-->
+<!--            <artifactId>api</artifactId>-->
+<!--            <version>1.0.0</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.collection</groupId>-->
+<!--            <artifactId>script</artifactId>-->
+<!--            <version>1.0.0</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.collection</groupId>-->
+<!--            <artifactId>user</artifactId>-->
+<!--            <version>1.0.0</version>-->
+<!--        </dependency>-->
+
+
     </dependencies>
 
 </project>

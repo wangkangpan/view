@@ -7,10 +7,12 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 import sys
+import io
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf8')
 
 
 def selectContentByid(url, tag, key, value):
@@ -21,8 +23,8 @@ def selectContentByid(url, tag, key, value):
         co.add_argument('--headless')
         co.add_argument('--disable-gpu')
 
-        # driver = webdriver.Chrome('D:\seleniumwebdriver\chromedriver.exe', options=co)
-        driver = webdriver.Chrome('D:\seleniumwebdriver\chromedriver.exe')
+        driver = webdriver.Chrome('D:\seleniumwebdriver\chromedriver.exe', options=co)
+        # driver = webdriver.Chrome('D:\seleniumwebdriver\chromedriver.exe')
 
         driver.get(url)
 

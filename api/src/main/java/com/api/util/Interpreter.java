@@ -4,6 +4,7 @@ import com.vo.OutData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,10 +14,12 @@ import java.util.List;
 
 
 @Slf4j
+@Component
 public class Interpreter {
     //      python解析器的路径
   private static String interpreterPath = "F:\\anaconda\\envs\\project\\python.exe";
 
+  @Async
   public List<OutData> RunScript(String path, String url, String tag, String key, String value) {
 
         try {
@@ -28,10 +31,10 @@ public class Interpreter {
             //它使用指定的字符集读取字节并将它们解 码为字符
             //BufferedReader 中只有用GBK和GB2312才能解决乱码
             BufferedReader in = new BufferedReader(
-                    new InputStreamReader(pr.getInputStream(), "GBK"));
+                    new InputStreamReader(pr.getInputStream(), "UTF-8"));
             //接受错误流
             BufferedReader isError = new BufferedReader(
-                    new InputStreamReader(pr.getErrorStream(),"GBK")
+                    new InputStreamReader(pr.getErrorStream(),"UTF-8")
             );
             //  String result = new String(
             //          doReader(in).getBytes("ISO-8859-1"), "UTF-8"

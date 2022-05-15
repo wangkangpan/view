@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人信息</title>
+    <link rel = "stylesheet"  href="../bootstrap/css/bootstrap.min.css">
+    <link rel = "stylesheet" href = "../bootstrap/css/bootstrap-theme.min.css">
+    <link rel = "stylesheet" href = "../toastr/toastr.min.css">
+    <style></style>
+</head>
+<body>
+    <div class = "container">
+        <div class="jumbotron">
+            <div class = "row">
+                <div class="col-md-3">
+                    <a href="#" class="thumbnail">
+                        <img src="../images/做核酸.png" alt="...">
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <h1>
+                        <span>Hello！</span>
+                        <span id = "user-name"></span>
+                    </h1>
+                </div>
+            </div>
+
+            <div>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="userId" class="col-sm-2 control-label">用户标识</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="userId" placeholder="id" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="userName" class="col-sm-2 control-label">用户名</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="userName" placeholder="username" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-sm-2 control-label">密码</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="password" placeholder="password" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="col-sm-2 control-label">邮箱</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="email" placeholder="email" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="telephone" class="col-sm-2 control-label">电话号码</label>
+                        <div class="col-sm-10">
+                            <input type="tel" class="form-control" id="telephone" placeholder="telephone" disabled>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button id = "controller" onclick = "modification()" type="button" class="btn btn-default btn-success">修改</button>
+                            <a id = "back" href = "/home" type="button" class="btn btn-default btn-danger">返回</a>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src = "../jquery/jquery-3.6.0.js" ></script>
+<script src = "../jquery/jquery.cookie.js"></script>
+<script src = "../bootstrap/js/bootstrap.min.js"></script>
+<script src = "../toastr/toastr.min.js"></script>
+<script type="module"src="../js/common.js" ></script>
+<script>
+    const script = "http://localhost:8082"
+    const user = "http://localhost:8081"
+    const start = "http://localhost:8080"
+
+    let option = false;
+    toastr.options = { // toastr配置
+        "closeButton": true, //是否显示关闭按钮
+        "debug": false, //是否使用debug模式
+        "progressBar": true, //是否显示进度条，当为false时候不显示；当为true时候，显示进度条，当进度条缩短到0时候，消息通知弹窗消失
+        "positionClass": "toast-top-full-width",
+        "showDuration": "400", //显示的动画时间
+        "hideDuration": "1000", //消失的动画时间
+        "timeOut": "5000", //展现时间
+        "extendedTimeOut": "2000", //加长展示时间
+        "showEasing": "swing", //显示时的动画缓冲方式
+        "hideEasing": "linear", //消失时的动画缓冲方式
+        "showMethod": "fadeIn", //显示时的动画方式
+        "hideMethod": "fadeOut" //消失时的动画方式
+    };
+    $().ready(function () {
+        getUser($.cookie("token"))
+    })
+
+    getUser = (token) => {
+        $.post(
+            user + "/user/select",
+            {
+                token: token
+            }
+        ).done(function (data) {
+            toastr.info(data.value)
+            $("#user-name").html(data.object.userName);
+            $("#userId").val(data.object.userId)
+            $("#userName").val(data.object.userName)
+            $("#password").val(data.object.password)
+            $("#email").val(data.object.email)
+            $("#telephone").val(data.object.telephone)
+        }).fail(function () {
+            toastr.info("非法用户")
+        })
+    }
+    updateUser = (token,userName,password,email,telephone) =>{
+        $.post(
+            user + "/user/update",
+            {
+                token: token,
+                userName: userName,
+                password: password,
+                email: email,
+                telephone: telephone
+            }
+        ).done(function (data) {
+            toastr.info(data.value)
+            $("#userId").val(data.object.userId)
+            $("#userName").val(data.object.userName)
+            $("#password").val(data.object.password)
+            $("#email").val(data.object.email)
+            $("#telephone").val(data.object.telephone)
+        }).fail(function () {
+            toastr.info("更新失败")
+        })
+    }
+
+    modification = () => {
+        option = !option
+
+        if(option){
+            $("#userName").removeAttr("disabled")
+            $("#password").removeAttr("disabled")
+            $("#email").removeAttr("disabled")
+            $("#telephone").removeAttr("disabled")
+            $("#controller").html("保存");
+        }else{
+            $("#userName").attr("disabled","true")
+            $("#password").attr("disabled","true")
+            $("#email").attr("disabled","true")
+            $("#telephone").attr("disabled","true")
+            $("#controller").html("修改");
+
+            updateUser(
+                $.cookie("token"),
+                $("#userName").val(),
+                $("#password").val(),
+                $("#email").val(),
+                $("#telephone").val(),
+            )
+        }
+
+    }
+</script>
+</html>
