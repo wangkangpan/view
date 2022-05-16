@@ -83,7 +83,7 @@ public class LoaderController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public Result addUser(User user){
 
-        if(user == null || user.getEmail() == null || patternUtil.isEmail(user.getEmail()) || userService.injectRegister(user) < 1) {
+        if(user == null || user.getEmail() == null || !patternUtil.isEmail(user.getEmail()) || userService.injectRegister(user) < 1) {
             return new Result(Result.DataBaseDefault, "注册失败",null);
 
         }else {
