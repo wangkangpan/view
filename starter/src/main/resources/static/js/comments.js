@@ -16,6 +16,13 @@ toastr.options = { // toastr配置
     "showMethod": "fadeIn", //显示时的动画方式
     "hideMethod": "fadeOut" //消失时的动画方式
 };
+// let token;
+// $().ready(function(){
+//     alert('1')
+//         let token = $.cookie("token");
+//         alert(token);
+// }
+// )
 //页面的数量
 let PageNum = 0;
 //当前页
@@ -322,16 +329,18 @@ addAnnouncement = () =>{
     ).done(function (data) {
         $('#modal-input').modal('hide')
         toastr.info(data.value)
+
     }).fail(function () {
         toastr.error("请求错误")
     })
 }
 addComment = () =>{
-    let userId = '1645422015492'
+    // let userId = '1645422015492'
+    let token = $.cookie("token")
     $.post(
         user + "/comments/addReply",
         {
-            userId: userId,
+            token: token,
             title: $('#CommentTitle').val(),
             comments: $('#CommentContent').val(),
             parentId: 0
@@ -339,6 +348,7 @@ addComment = () =>{
     ).done(function (data) {
         $('#modal-input-c').modal('hide')
         toastr.info(data.value)
+        // alert(token)
     }).fail(function () {
         toastr.error("请求错误")
     })

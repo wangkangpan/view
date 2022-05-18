@@ -1,6 +1,7 @@
 package com.user.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.api.util.JwtUtils;
 import com.user.entity.po.Announcement;
 import com.user.entity.po.Comments;
 import com.user.entity.vo.Page;
@@ -70,8 +71,9 @@ public class CommentsController {
 
     @PostMapping
     @RequestMapping("/addReply")
-    public Result<?> addReply(Comments comments){
+    public Result<?> addReply(Comments comments, String token){
 
+        comments.setUserId(JwtUtils.getClaim(token,"userId"));
         commentsService.addCommentIsReply(comments);
         return new Result<>(Result.Success, "添加/回复成功",comments);
     }

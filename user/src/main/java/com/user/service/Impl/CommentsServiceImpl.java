@@ -82,9 +82,6 @@ public class CommentsServiceImpl implements CommentsService {
         }
         res.addAll(floorComments);
         return res;
-
-
-
     }
 
     @Override

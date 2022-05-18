@@ -21,6 +21,10 @@ public class Comments {
 
     private String parentUserName;
 
+//    ================================================
+
+//    private String token;
+
     public Comments(){}
     public Comments(Integer id, String comments, Date createTime, String userName){
         this.id = id;

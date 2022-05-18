@@ -137,18 +137,20 @@
             '回复' + $(element).parents('.reply-block').prev().children('.answer').html()
             + ': '
         )
-        alert($(element).parents('.children-comment').attr('id'));
+        // alert($(element).parents('.children-comment').attr('id'));
         $('#parentId').val($(element).parents('.children-comment').attr('id'))
     }
     $('#requestDoReply').click(function () {
-        let userId = '1645422015492'
+        // let userId = '1645422015492'
+        let token = $.cookie("token")
         let parentId = $('#parentId').val()
         $.post(
             user + "/comments/addReply",
             {
+                token: token,
                 parentId: parentId,
                 comments: $('#reply-text').val(),
-                userId: userId
+                // userId: userId
 
             }
         ).done(function (data) {
