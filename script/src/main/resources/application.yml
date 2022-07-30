@@ -3,7 +3,8 @@ server:
   #端口号
   port: 8082
   #项目名，如果不设定，默认是 /
-  context-path: /do-script
+  servlet:
+    context-path: /do-script
 
 
 script:

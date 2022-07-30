@@ -3,7 +3,8 @@ server:
   #端口号
   port: 8081
   #项目名，如果不设定，默认是 /
-  context-path: /user
+  servlet:
+    context-path: /user
 
 spring: 
 #mysql 数据库
