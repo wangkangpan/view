@@ -49,7 +49,7 @@ public class LoaderController {
         Result<?> res = userService.checkPasswordByUserName(userName, password);
         if(res.getCode() == Result.Success){
             User user = (User)(res.getObject());
-            return new Result<>(Result.Success, "登陆成功",JwtUtils.sign(userName, user.getUserId(), user.getId()));
+            return new Result<>(Result.Success, "登陆成功",JwtUtils.sign(userName, user.getUserId(), String.valueOf(user.getId())));
         }
         return new Result<>(Result.DataBaseDefault, res.getValue(),null);
 

@@ -73,7 +73,7 @@ public class UserController {
         if(id == null || id.equals("") || !(patternUtil.isEmail(user.getEmail()))){
             return new Result<>(Result.UnKnownDefault, "请求修改非法", userService.getUser(id));
         }
-        user.setId(id);
+        user.setId(Integer.valueOf(id));
         userService.setUser(user);
         return new Result<>(Result.Success,"修改用户信息成功", userService.getUser(id));
 
