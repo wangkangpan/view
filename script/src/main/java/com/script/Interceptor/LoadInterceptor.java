@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
-
 @Slf4j
 @Component
 public class LoadInterceptor implements HandlerInterceptor {
@@ -26,7 +25,7 @@ public class LoadInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest servletRequest, HttpServletResponse response, Object handler) {
         //统一拦截
 //        String token = servletRequest.getParameter("token");
-        String token = JwtUtils.sign("die","2");
+        String token = JwtUtils.sign("die","2","1");
         Object username = JwtUtils.verify(token);
         if(username != null){
             return true;
@@ -37,6 +36,7 @@ public class LoadInterceptor implements HandlerInterceptor {
             Result<String> res = new Result(Result.UnLoad,"未登录",token);
             response.getWriter().append(res.toJson().toJSONString());
         }catch (Exception e) {
+
             log.error(e.getMessage());
             return false;
         }
@@ -44,21 +44,6 @@ public class LoadInterceptor implements HandlerInterceptor {
 
     }
 
-    /**
-     * 请求处理之后进行调用，但是在视图被渲染之前（Controller方法调用之后）
-     */
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
-//         System.out.println("执行了TestInterceptor的postHandle方法");
-    }
-
-    /**
-     * 在整个请求结束之后被调用，也就是在DispatcherServlet 渲染了对应的视图之后执行（主要是用于进行资源清理工作）
-     */
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-//        System.out.println("执行了TestInterceptor的afterCompletion方法");
-    }
 
 
 

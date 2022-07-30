@@ -17,8 +17,9 @@ public class WebLoginConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         //注册TestInterceptor拦截器
         InterceptorRegistration registration = registry.addInterceptor(loadInterceptor);
-        registration.addPathPatterns("/script/**");                      //所有路径都被拦截
-        registration.excludePathPatterns(                         //添加不拦截路径
+        registration.addPathPatterns("/do-script/script/**");      //所有路径都被拦截
+        registration.excludePathPatterns(                //添加不拦截路径
+                "/do-script/rpc/**",  // 放行RPC 服务接口
                 "/*",            //登录
                 "/**/*.html",            //html静态资源
                 "/**/*.js",              //js静态资源

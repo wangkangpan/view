@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class UnityExceptionHandler extends BaseException {
     
 
-    @ExceptionHandler(value = Exception.class)
+    @ExceptionHandler(value = RuntimeException.class)
     public Result<?> doHandler(Exception e){
         log.error(e.getMessage());
         return new Result<>(Result.UnKnownDefault,"服务器异常",null);

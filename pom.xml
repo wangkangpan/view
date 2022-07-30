@@ -8,6 +8,7 @@
         <module>script</module>
         <module>api</module>
         <module>starter</module>
+        <module>eureka-server</module>
     </modules>
 
     <parent>

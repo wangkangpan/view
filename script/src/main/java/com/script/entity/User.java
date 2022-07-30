@@ -1,4 +1,4 @@
-package com.user.entity;
+package com.script.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
