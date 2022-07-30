@@ -55,8 +55,15 @@ pagehelper:
   helper-dialect: mysql
   reasonable: true
   support-methods-arguments: true
-  #parms 参数属性别名
 
+# 日志文件输出配置
+# 文件的路径和级别已经在logback-spring.xml中设置
+logging:
+  config: classpath:log/logback-spring.xml
+#  path: operation-mysql-logs
+#  level.: debug
+
+#parms 参数属性别名
 download:
   script:
     address: D:\project\view\script\src\main\resources\download\script.zip
